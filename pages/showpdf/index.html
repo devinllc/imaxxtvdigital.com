@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>PDF Viewer</h1>
+        <div id="pdf-scroll-container" class="pdf-scroll-container">
+            <div id="pdf-container" class="pdf-container"></div>
+        </div>
+    </div>
+    <button class="btn-watch" id="mbcbtn" onclick="goBacks()">Back</button>
+
+    <script>
+        // Function to get the query parameter from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Function to load the PDF dynamically based on the passed PDF URL
+        async function loadPDF(pdfUrl) {
+            if (!pdfUrl) {
+                alert('No PDF URL provided');
+                return;
+            }
+
+            const pdfContainer = document.getElementById("pdf-container");
+
+            // Load the PDF using PDF.js
+            const loadingTask = pdfjsLib.getDocument(pdfUrl);
+            const pdf = await loadingTask.promise;
+
+            // Render all pages of the PDF
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const viewport = page.getViewport({ scale: 1.5 });
+
+                // Create canvas elements for each page
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                // Render the page into the canvas
+                const renderTask = page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                });
+
+                await renderTask.promise;
+
+                // Add the canvas to the container
+                pdfContainer.appendChild(canvas);
+            }
+        }
+
+        // On page load, get the 'pdf' parameter and load the PDF
+        window.onload = function () {
+            const pdfUrl = getQueryParam('pdf');
+            loadPDF(pdfUrl);
+        };
+
+        // Back button functionality
+        function goBacks() {
+            window.history.back();
+        }
+
+        // Scroll functionality for mobile devices
+        let lastScrollTop = 0;
+        window.onscroll = function () {
+            let button = document.getElementById("mbcbtn");
+            let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (window.innerWidth <= 768) {
+                if (currentScrollTop > lastScrollTop) {
+                    button.style.display = "block";
+                } else {
+                    button.style.display = "none";
+                }
+            } else {
+                button.style.display = "block";
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        };
+    </script>
+</body>
+
+</html>

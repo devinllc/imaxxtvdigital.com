@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="page">
+        <h1>Show Details</h1>
+
+        <div class="details-container">
+            <div class="detail-card">
+                <img id="show-image" src="default.jpg" alt="Show Image">
+                <h2 id="show-title">Show Title</h2>
+                <p class="short-description">Trending now. Don't miss out!</p>
+
+                <h3>Detailed Description</h3>
+                <p class="show-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum
+                    interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Mauris at ante a
+                    sapien consequat consectetur. Sed viverra varius nisl, non ullamcorper erat. Integer posuere eros ac
+                    ligula tincidunt aliquam. Praesent quis neque ac erat varius elementum.
+                </p>
+
+                <a href="#" class="btn-watch">Watch Now</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Get the URL parameters and populate the detail page
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title');
+        const description = params.get('description');
+        const imgSrc = params.get('imgSrc');
+
+        // Update the content dynamically
+        document.getElementById('show-title').textContent = title;
+        document.getElementById('show-description').textContent = description;
+        
+        // Ensure correct image path without prefixing folder path again
+        document.getElementById('show-image').src = imgSrc ? imgSrc : 'default.jpg';
+    </script>
+
+</body>
+
+</html>

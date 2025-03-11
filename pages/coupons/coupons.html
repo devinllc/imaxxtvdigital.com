@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupon Codes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            color: aliceblue;
+        }
+
+        body {
+            background-color: #000;
+            color: #D1B261;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        .responsive-container-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            margin-top: 70px;
+        }
+
+        .coupon-container {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 125px;
+            padding: 20px;
+        }
+
+        .coupon-card {
+            width: 22%;
+            background-color: #000;
+            border: 1px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .coupon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px D1B261;
+        }
+
+        .coupon-heading {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #D1B261;
+        }
+
+        .coupon-img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        #h2ss {
+            margin-top: 60px;
+            font-size: 38px;
+            color: #D1B261;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .coupon-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .coupon-card {
+                width: 100%;
+                max-width: 330px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="responsive-container-block">
+        <h2 id="h2ss">Coupon Codes</h2>
+    </div>
+
+    <div class="responsive-container-block coupon-container">
+        <div class="coupon-card">
+            <h3 class="coupon-heading">IMAXXTV75</h3>
+            <img src="/Assests/coupons/1 5.png" alt="IMAXXTV75" class="coupon-img">
+        </div>
+        <div class="coupon-card">
+            <h3 class="coupon-heading">IMAXXFREE</h3>
+            <img src="/Assests/coupons/2 7.png" alt="IMAXXFREE" class="coupon-img">
+        </div>
+        <!-- <div class="coupon-card">
+            <h3 class="coupon-heading">Coupon 3</h3>
+            <img src="/Assests/images/image copy.png" alt="Coupon 3" class="coupon-img">
+        </div> -->
+        <!-- <div class="coupon-card">
+            <h3 class="coupon-heading">Coupon 4</h3>
+            <img src="/Assests/images/image copy.png" alt="Coupon 4" class="coupon-img">
+        </div> -->
+        <!-- Add more coupons as needed -->
+    </div>
+
+</body>
+
+</html>

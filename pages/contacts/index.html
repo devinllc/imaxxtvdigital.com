@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="contact-container">
+        <div class="flexx">
+
+
+            <div class="leftsss">
+                <!-- Address 1 with Google Maps -->
+                <div class="address">
+                    <h2>Our Office - India</h2>
+                    <p>202 Aditya Heritage Near Rustomjee
+                        Enclave, MindSpace, Malad West, Mumabi
+                        400064, Maharashtra, India.</p>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.452393496733!2d72.82889672583434!3d19.175433302429386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6f5d5e09575%3A0x3cc57d19bd6db8ea!2sAditya%20Heritage%2C%20Rustomjee%20Elanza%20Ave%2C%20Malad%2C%20Ram%20Nagar%2C%20Malad%20West%2C%20Mumbai%2C%20Maharashtra%20400064!5e0!3m2!1sen!2sin!4v1739884767352!5m2!1sen!2sin"
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <!-- Address 2 with Google Maps -->
+                <div class="address">
+                    <h2>Our Office- United Kingdom</h2>
+                    <p>75 Shelton Street, Covent Gardens,
+                        London WC2H 9JQ, United Kingdom.</p>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.916193380596!2d-0.1262672870200782!3d51.51475351004752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604ccaef2b82d%3A0xbacdeb284c3a3fe4!2s75%20Shelton%20St%2C%20London%20WC2H%209FD%2C%20UK!5e0!3m2!1sen!2sin!4v1739884808151!5m2!1sen!2sin"
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div>
+                    <br>
+                    <h1 style="color: white;"> <i class="fas fa-phone-alt"></i>Helpline Number </h1>
+                    <h2 style="color: white;">022 - 45174085</h2>
+                </div>
+                <!-- <div>
+                    <h1 style="color: white;"> <i class="fas fa-phone-alt"></i>Helpline Number </h1>
+                    <h2 style="color: white;">022 - 45174085</h2>
+                </div> -->
+            </div>
+
+            <div class="rightssss">
+                <h1 class="page-title">Contact Us </h1>
+                <p class="contact-description">Tell us more and we'll find the best solution for you</p>
+
+                <div class="contact-form">
+                    <form method="POST"
+                        action="https://script.google.com/macros/s/AKfycbwGXCP4yY2i2W-QcKU24_ulTHM3xMkzLGagZFA-e_Jh6YGntcHD0x2xv9cL59ksCMoi/exec">
+                        <div class="form-section">
+                            <label for="name">Your Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-section">
+                            <label for="contact">Contact Number:</label>
+                            <input type="tel" id="contact" name="contact" placeholder="Enter your contact number"
+                                required>
+                        </div>
+                        <div class="form-section">
+                            <label for="email">Your Email:</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-section">
+                            <label for="reason">Reason for Contact:</label>
+                            <input type="text" id="reason" name="reason" placeholder="I want to ......" required>
+                        </div>
+                        <div class="form-section">
+                            <label for="message">Your Message:</label>
+                            <textarea id="message" name="message" placeholder="Tell us more..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div class="quick-links">
+            <h2 class="links-title">Quick Links</h2>
+            <ul class="links-list">
+                <li><a href="#">Content Grievances in India</a></li>
+                <li><a href="#">Reset password</a></li>
+                <li><a href="#">Update email</a></li>
+                <li><a href="#">Get help signing in</a></li>
+                <li><a href="#">Update payment method</a></li>
+                <li><a href="#">Request TV shows or movies</a></li>
+            </ul>
+        </div> -->
+    </div>
+    <button class="" id="mbcbtn" onclick="goBacks()">Back</button>
+    <script>
+        let lastScrollTop = 0;
+
+        window.onscroll = function () {
+            let button = document.getElementById("mbcbtn");
+            let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Check if it's a mobile device (max-width: 768px)
+            if (window.innerWidth <= 768) {
+                if (currentScrollTop > lastScrollTop) {
+                    // User is scrolling down
+                    button.style.display = "block"; // Show the button
+                } else {
+                    // User is scrolling up
+                    button.style.display = "none"; // Hide the button
+                }
+            } else {
+                // On desktop, keep the button always visible
+                button.style.display = "block"; // Ensure it's always shown on desktop
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
+        };
+
+        function goBacks() {
+            window.history.back();
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

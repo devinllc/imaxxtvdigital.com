@@ -1,0 +1,373 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+body {
+    background-color: #000;
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    text-align: center;
+}
+
+#page {
+    padding: 40px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin: 20px 0;
+    color: #ffffff;
+}
+
+.scroll-section {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    gap: 50px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.scroll-images {
+    display: flex;
+    justify-content: space-around;
+    animation: scrollLeft 30s linear infinite;
+}
+
+.scroll-images img {
+    max-width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.partner-forms {
+    display: flex;
+    gap: 20px;
+
+}
+
+.partner-form {
+    /* max-width: 800px; */
+    margin: 0 auto;
+    width: 50%;
+    /* height: 100%; */
+    background-color: #000;
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.leftsssss {
+    width: 50%;
+    text-align: justify;
+    font-size: 16px;
+
+    /* font-family: Arial, Helvetica, sans-serif; */
+    color: #D1B261;
+}
+
+.rightsssss {
+    width: 100%;
+}
+
+.partner-form input,
+.partner-form select,
+.partner-form textarea {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    background-color: #000;
+    color: aliceblue;
+    border-radius: 5px;
+}
+
+.partner-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #D1B261;
+    color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.partner-form button:hover {
+    background-color: #D1B261;
+}
+
+/* Media Queries for Mobile and Tablet */
+@media (max-width: 1024px) {
+
+    /* For tablets */
+    .scroll-images img {
+        height: 300px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .rightsssss {
+        width: 100%;
+    }
+
+    .leftsssss {
+        width: 100%;
+    }
+
+    .partner-forms {
+        padding: 15px;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .partner-form {
+        width: 100%;
+    }
+
+    .partner-form input,
+    .partner-form textarea {
+        padding: 8px;
+    }
+
+    .partner-form button {
+        padding: 10px;
+    }
+
+    .platforms {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* For mobile devices */
+    .scroll-images img {
+        height: 200px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .partner-forms {
+        padding: 15px;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .partner-form {
+        width: 100%;
+    }
+
+    .leftsssss {
+        width: 100%;
+    }
+
+    .rightsssss {
+        width: 100%;
+    }
+
+    .partner-form input,
+    .partner-form textarea {
+        padding: 8px;
+    }
+
+    .partner-form button {
+        padding: 8px;
+    }
+
+    .platforms {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* For small mobile screens */
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    .scroll-images img {
+        height: 150px;
+    }
+
+    .partner-forms {
+        padding: 15px;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .partner-form {
+        width: 100%;
+    }
+
+    .leftsssss {
+        width: 100%;
+    }
+
+
+    .rightsssss {
+        width: 100%;
+    }
+
+    .partner-form input,
+    .partner-form textarea {
+        font-size: 0.9rem;
+        padding: 6px;
+    }
+
+    .partner-form button {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .platforms {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+#mbcbtn {
+    z-index: 0;
+    position: fixed;
+    bottom: 5px;
+    left: 20px;
+}
+
+#mbcbtn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: #ffffff;
+    text-shadow: 4px 4px 12px #D1B261;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+#mbcbtn:hover {
+    cursor: pointer;
+}
+
+
+/* Availability Section */
+/* Availability Section */
+
+/* Availability Section */
+
+/* Availability Section */
+#availability {
+    text-align: center;
+}
+
+/* Centered Heading */
+#availability h2 {
+    margin-top: 40px;
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Platform Row */
+.platforms {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+}
+
+/* Individual Platform Card */
+.platform {
+    background: #000000;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px #D1B261;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+/* Hover Effect for Elevation */
+.platform:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 8px 20px #D1B261;
+}
+
+/* Icon Styling */
+.platform i {
+    font-size: 2.5rem;
+    color: #D1B261;
+    margin-bottom: 5px;
+}
+
+/* Platform Name */
+.platform span {
+    font-size: 18px;
+    font-weight: bold;
+}

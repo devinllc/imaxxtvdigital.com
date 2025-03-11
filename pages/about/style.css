@@ -1,0 +1,623 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: aliceblue;
+    font-family: 'Montserrat';
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('Assests/BigShouldersDisplay-VariableFont_wght.ttf') format('woff2'),
+        url('Assests/BigShouldersDisplay-VariableFont_wght.ttf') format('woff');
+    font-weight: normal;
+    color: #FFFFFF;
+    line-height: 1.9;
+
+    font-style: normal;
+}
+
+/* Apply Montserrat for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+
+#newsSection {
+    display: none;
+}
+
+a {
+    /* font-family: 'MyCustomFont', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+h1 {
+    color: #D1B261;
+    margin-top: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+}
+
+html,
+body {
+    background-color: #000;
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'MyCustomFont', sans-serif; */
+    font-weight: normal;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+}
+
+
+
+
+#abussstt {
+    /* height: 100%; */
+    width: 100%;
+    /* margin-top: 30px; */
+    overflow-y: auto;
+    /* max-height: 100vh; */
+    /* Or any height to limit the container's size */
+}
+
+#about_us {
+    /* height: 100vh; */
+    margin-top: 190px;
+    margin-bottom: 200px;
+    background-color: #000;
+    display: flex;
+    align-items: start;
+    justify-content: space-around;
+    padding: 0 50px;
+    position: relative;
+    z-index: 10;
+}
+
+/* .ableft {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+} */
+
+#about_us img {
+    align-items: start;
+    padding-top: 100px;
+    /* margin-top: -150px; */
+    /* width: 360px; */
+
+}
+
+#about-us-in {
+    width: 60%;
+    text-align: center;
+}
+
+#about-us-in h3 {
+    font-size: 34px;
+    font-weight: 800;
+    text-transform: capitalize;
+}
+
+#about-us-in p {
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    text-align: justify;
+    font-size: 26px;
+    line-height: 1.3;
+
+}
+
+
+.social-icons {
+    display: flex;
+    /* flex-direction: column; */
+    /* Align icons vertically */
+    /* position: fixed; */
+    /* left: 1px; */
+    /* Stick to the left */
+    /* bottom: 20px; */
+    /* Adjust position from bottom */
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.social-icons a {
+    font-size: 1rem;
+    color: #D1B261;
+    padding: 8px;
+    border: 2px solid #D1B261;
+    border-radius: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    background-color: #333;
+}
+
+.social-icons a:hover {
+    color: #D1B261;
+    background-color: #222;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.social-icons i {
+    transition: transform 0.3s ease;
+    color: #D1B261;
+    font-size: 20px;
+}
+
+.social-icons a:hover i {
+    transform: scale(1.2);
+}
+
+
+/* laytesssss */
+
+.curved-divider {
+    width: 100%;
+    /* max-width: 100px; */
+    height: 400px;
+
+    margin-right: 15%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-top: 4px solid #D1B261;
+    /* border-bottom: 4px solid #D1B261; */
+    position: absolute;
+    /* bottom: -90%; */
+    bottom: 10%;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 0 0 15px rgba(255, 215, 0, 1), 0 0 25px rgba(255, 215, 0, 0.8); */
+    border-radius: 100% 100% 0 0;
+    /* C shape curve effect */
+    transform: rotate(180deg);
+    z-index: 1000;
+    /* This flips the curve upwards */
+}
+
+
+
+.gif-text,
+.gif-texts {
+    font-size: 60px;
+    font-weight: bold;
+    color: transparent;
+    text-align: center;
+    background: #ffffff;
+    text-shadow: 0 2px 8px #D1B261;
+    /* background: linear-gradient(135deg, #f6b544 50%, #ffffff 50%), linear-gradient(-135deg, #ffc155 50%, #ffffff 50%); */
+    background-size: cover;
+    background-position: center;
+    font-family: 'Montserrat', sans-serif;
+    background-clip: text;
+    -webkit-background-clip: text;
+    padding: 50px;
+    background-size: 100% 100%;
+}
+
+.gif-texts {
+
+    font-size: 50px;
+    /* font-size: 24px; */
+    margin-top: -50px;
+    /* background: linear-gradient(135deg, #ffcf0e 50%, #ffffff 50%), linear-gradient(-135deg, #ffd21d 50%, #ffffff 50%); */
+    /* text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.5); */
+}
+
+
+.gif-text {
+    /* background: linear-gradient(135deg, #ffcf0e 50%, #ffffff 50%), linear-gradient(-135deg, #ffd21d 50%, #ffffff 50%); */
+    /* box-shadow: 10px 10px 20px rgba(151, 147, 147, 0.3); */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Availability Section */
+/* Availability Section */
+
+/* Availability Section */
+
+/* Availability Section */
+#availability {
+    text-align: center;
+}
+
+/* Centered Heading */
+#availability h2 {
+    margin-top: 40px;
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Platform Row */
+.platforms {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+}
+
+/* Individual Platform Card */
+.platform {
+    background: #000000;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px #D1B261;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+/* Hover Effect for Elevation */
+.platform:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 8px 20px #D1B261;
+}
+
+/* Icon Styling */
+.platform i {
+    font-size: 2.5rem;
+    color: #D1B261;
+    margin-bottom: 5px;
+}
+
+/* Platform Name */
+.platform span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* teamss */
+
+.team-section {
+
+    padding: 50px 0;
+    text-align: center;
+    background-color: #000;
+}
+
+.team-section h2 {
+    margin-top: 60px;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    margin-bottom: 40px;
+    font-size: 40px;
+}
+
+
+.team-container {
+    margin-left: 160px;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 120px);
+    /* Adjust width considering margin */
+    height: 100%;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 equal columns */
+    padding: 0 10px;
+    background-color: #000;
+}
+
+.team-card {
+    border: 1px solid white;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background-color: #000;
+    box-shadow: 0 8px 8px #D1B261;
+    width: 270px;
+    height: 360px;
+    /* Consistent height */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.team-card img {
+    width: 100%;
+    height: 280px;
+    /* Contain the image within the card */
+    object-fit: cover;
+    /* Ensure the image covers the area without overflow */
+    border-radius: 12px;
+}
+
+.team-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
+.team-card p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.team-hover-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.team-card:hover .team-hover-info {
+    opacity: 0.9;
+}
+
+.team-hover-info h4,
+.team-hover-info p {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background-color: #000;
+    /* Changed to dark black */
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid white;
+    text-align: center;
+    width: 600px;
+    position: relative;
+    max-height: 80%;
+    overflow-y: auto;
+}
+#linkss{
+    display: flex;
+    justify-content: space-between;
+}
+.popup-content img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.popup-content h3,
+.popup-content p {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+.popup-content .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.popup-info {
+    margin-top: 10px;
+    text-align: left;
+    color: #ffffff;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    #about_us {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .team-container {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        width: 100%;
+        /* Ensure full width for the container */
+        padding: 0;
+        margin: 0;
+    }
+
+    #about-us-in {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .curved-divider {
+        display: none;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .team-container {
+        margin-left: 0;
+        /* Remove any large margin-left for small screens */
+        grid-template-columns: repeat(1, 1fr);
+        /* Single-column layout */
+        padding: 0 10px;
+        /* Reduce padding for smaller devices */
+    }
+
+    .team-card {
+        width: 100%;
+        /* Full width of the screen */
+        margin: 10px 0;
+        /* Adjust margin for mobile */
+        height: auto;
+        /* Let the card adjust based on content */
+    }
+
+    #about_us {
+        padding: 0 10px;
+        /* Reduce padding on smaller screens */
+        margin-top: 120px;
+        margin-bottom: 100px;
+        /* Adjust margins for mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    #about_us img {
+        width: 100%;
+        /* Make images responsive */
+        margin: 0 auto;
+        /* Center images */
+    }
+
+    .team-card img {
+        object-fit: cover;
+        /* Ensure images fit properly */
+        width: 100%;
+        /* Make images full width */
+        height: auto;
+        /* Adjust height for mobile */
+    }
+
+    /* Platform Row */
+    .platforms {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+
+    }
+
+    #about-us-in p {
+        text-transform: uppercase;
+        font-family: 'Poppins', sans-serif;
+        font-weight: normal;
+        text-align: start;
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        /* Prevent horizontal scrolling */
+    }
+
+    #about_us,
+    .team-container {
+        width: 100%;
+        /* Ensure full width for the container */
+        padding: 0;
+        margin: 0;
+    }
+
+    #about-us-in p {
+        text-transform: uppercase;
+        font-family: 'Poppins', sans-serif;
+        font-weight: normal;
+        text-align: start;
+        font-size: 20px;
+    }
+
+    .team-card {
+        width: 90%;
+        /* Make the card a bit smaller for mobile view */
+        margin: 10px auto;
+        /* Center the card and provide some spacing */
+    }
+
+    /* Platform Row */
+    .platforms {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+
+    }
+
+    /* Adjust any other specific sections that are causing issues */
+}
+
+#mbcbtn {
+    z-index: 0;
+    position: sticky;
+    bottom: 20px;
+    left: 20px;
+}
+
+#mbcbtns {
+    z-index: 100;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.btn-watch {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: #ffffff;
+    text-shadow: 2px 2px 30px #D1B261;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-watch:hover {
+    text-shadow: 2px 2px 30px #D1B261;
+    cursor: pointer;
+}
