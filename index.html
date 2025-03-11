@@ -103,12 +103,14 @@
 
                 </div>
                 <div class="footer-message" id="buttionss">
-                    <form class="footer-message" method="POST"
-                        action="https://script.google.com/macros/s/AKfycbzohC_0mOQIZondb_m4eO9QN_T4SXo-Ag5K7iJkFmUOd1sNQdpAlq1_REeoV486b3xGSQ/exec">
-                        <input type="number" maxlength="10" name="email" placeholder="Enter your Number" required>
+                    <form id="phoneForm" class="footer-message">
+                        <input type="number" maxlength="10" id="phoneNumber" name="phoneNumber"
+                            placeholder="Enter your Number" required>
                         <button type="submit" class="message-btn">
                             <i class="fa fa-paper-plane"></i>
                         </button>
+                        <div id="phoneFormStatus"
+                            style="display: none; margin-top: 5px; font-weight: bold; color: white;"></div>
                     </form>
                 </div>
             </div>
@@ -224,7 +226,7 @@
                         kids enjoy family-friendly TV shows and films in their own space.
 
                         Kids profiles come with PIN-protected parental controls that let you restrict the maturity
-                        rating of content kids can watch and block specific titles you don’t want kids to see.</p>
+                        rating of content kids can watch and block specific titles you don't want kids to see.</p>
                     <button class="close-btn">Close</button>
                 </div>
             </div>
@@ -345,12 +347,14 @@
                 <div class="footer-right">
                     <h1>Start Your Free Trial Now</h1>
                     <div class="footer-messages">
-                        <form class="footer-messages" method="POST"
-                            action="https://script.google.com/macros/s/AKfycbzohC_0mOQIZondb_m4eO9QN_T4SXo-Ag5K7iJkFmUOd1sNQdpAlq1_REeoV486b3xGSQ/exec">
-                            <input type="email" name="email" placeholder="Enter your email" required>
+                        <form id="emailForm" class="footer-messages">
+                            <input type="email" id="emailAddress" name="emailAddress" placeholder="Enter your email"
+                                required>
                             <button type="submit" class="message-btns">
                                 <i class="fa fa-paper-plane"></i>
                             </button>
+                            <div id="emailFormStatus"
+                                style="display: none; margin-top: 5px; font-weight: bold; color: white;"></div>
                         </form>
                     </div>
                 </div>
@@ -404,6 +408,183 @@
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => console.log('Success!', response))
                 .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        let app, db;
+
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            console.log("Firebase initialized successfully");
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+            alert("Firebase initialization failed: " + error.message);
+        }
+
+        // Function to show status messages
+        function showStatus(elementId, message, isSuccess) {
+            const statusElement = document.getElementById(elementId);
+            if (!statusElement) {
+                console.error(`Status element ${elementId} not found`);
+                return;
+            }
+
+            statusElement.textContent = message;
+            statusElement.style.color = isSuccess ? "#4CAF50" : "#F44336";
+            statusElement.style.display = "block";
+
+            // Automatically hide success messages after 3 seconds
+            if (isSuccess) {
+                setTimeout(() => {
+                    statusElement.style.display = "none";
+                }, 3000);
+            }
+        }
+
+        // Function to validate phone number
+        function validatePhone(phone) {
+            // Basic validation for phone numbers
+            const phoneRegex = /^\d{10}$/;
+            return phoneRegex.test(phone);
+        }
+
+        // Function to validate email
+        function validateEmail(email) {
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM fully loaded");
+
+            // Phone Form Submission
+            const phoneForm = document.getElementById('phoneForm');
+            if (phoneForm) {
+                phoneForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const phoneNumber = document.getElementById('phoneNumber').value;
+                    const submitBtn = e.submitter;
+
+                    // Disable button during submission
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                    }
+
+                    // Validate phone number
+                    if (!validatePhone(phoneNumber)) {
+                        showStatus('phoneFormStatus', "Please enter a valid 10-digit phone number", false);
+                        if (submitBtn) submitBtn.disabled = false;
+                        return;
+                    }
+
+                    try {
+                        // Check if Firebase is initialized
+                        if (!db) {
+                            throw new Error("Firebase is not initialized");
+                        }
+
+                        // Add document to "subscriptions" collection
+                        const docRef = await addDoc(collection(db, "subscriptions"), {
+                            phone_number: phoneNumber,
+                            type: "phone",
+                            timestamp: serverTimestamp(),
+                            submission_date: new Date().toISOString()
+                        });
+
+                        console.log("Phone subscription saved with ID:", docRef.id);
+
+                        // Show success message
+                        showStatus('phoneFormStatus', "Thank you! We'll contact you soon.", true);
+
+                        // Reset form
+                        phoneForm.reset();
+                    } catch (error) {
+                        console.error("Error saving phone subscription:", error);
+                        showStatus('phoneFormStatus', "Error submitting. Please try again later.", false);
+                    } finally {
+                        // Re-enable button
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                        }
+                    }
+                });
+            }
+
+            // Email Form Submission
+            const emailForm = document.getElementById('emailForm');
+            if (emailForm) {
+                emailForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const emailAddress = document.getElementById('emailAddress').value;
+                    const submitBtn = e.submitter;
+
+                    // Disable button during submission
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                    }
+
+                    // Validate email
+                    if (!validateEmail(emailAddress)) {
+                        showStatus('emailFormStatus', "Please enter a valid email address", false);
+                        if (submitBtn) submitBtn.disabled = false;
+                        return;
+                    }
+
+                    try {
+                        // Check if Firebase is initialized
+                        if (!db) {
+                            throw new Error("Firebase is not initialized");
+                        }
+
+                        // Add document to "subscriptions" collection
+                        const docRef = await addDoc(collection(db, "subscriptions"), {
+                            email: emailAddress,
+                            type: "email",
+                            timestamp: serverTimestamp(),
+                            submission_date: new Date().toISOString()
+                        });
+
+                        console.log("Email subscription saved with ID:", docRef.id);
+
+                        // Show success message
+                        showStatus('emailFormStatus', "Thank you! We'll contact you soon.", true);
+
+                        // Reset form
+                        emailForm.reset();
+                    } catch (error) {
+                        console.error("Error saving email subscription:", error);
+                        showStatus('emailFormStatus', "Error submitting. Please try again later.", false);
+                    } finally {
+                        // Re-enable button
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                        }
+                    }
+                });
+            }
         });
     </script>
     <!-- FOOTRESSSS -->

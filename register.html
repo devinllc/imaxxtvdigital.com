@@ -246,23 +246,29 @@
 
             .row div {
                 min-width: calc(50% - 10px);
-
-
+                margin-left: 5px;
+                margin-right: 5px;
             }
 
             form {
-                margin: 40px;
+                margin: 40px auto;
+                width: 90%;
+                max-width: 1000px;
+                padding: 30px;
             }
         }
 
         @media (min-width: 1024px) {
             .row div {
                 min-width: calc(33.33% - 10px);
-
+                margin-left: 5px;
+                margin-right: 5px;
             }
 
             form {
-                margin: 40px;
+                margin: 40px auto;
+                width: 90%;
+                max-width: 1000px;
             }
 
             .row {
@@ -273,19 +279,248 @@
         @media (max-width: 767px) {
             .row div {
                 min-width: 100%;
-
+                margin-left: 0;
+                margin-right: 0;
             }
 
             form {
-                margin: 40px;
+                margin: 20px auto;
+                padding: 15px;
+                width: 90%;
             }
 
             .row {
-                gap: 20px;
+                gap: 10px;
+            }
+
+            img {
+                height: 100px;
+                margin-bottom: -15px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+
+            /* Make gender options display in a row with less gap */
+            .gender-options {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 5px;
+                margin-top: 3px;
+            }
+
+            .gender-options div {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+            }
+
+            .checkbox {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+                margin-top: 5px;
+            }
+
+            .checkbox input[type="radio"],
+            .checkbox input[type="checkbox"] {
+                margin-right: 3px;
+            }
+
+            .receipt-card {
+                width: 90%;
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .receipt-card .buttons {
+                flex-direction: column;
+            }
+
+            .receipt-card button {
+                width: 100%;
+                margin-top: 10px;
             }
 
             button {
                 width: 100%;
+            }
+        }
+
+        /* Additional mobile improvements */
+        @media (max-width: 480px) {
+            body {
+                padding: 0 10px;
+            }
+
+            img {
+                height: 80px;
+                margin-top: 15px;
+                margin-bottom: -15px;
+            }
+
+            form {
+                margin: 15px auto;
+                padding: 15px;
+                width: 90%;
+                box-sizing: border-box;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="date"],
+            select {
+                padding: 8px;
+                font-size: 14px;
+                margin: 3px 0;
+            }
+
+            .row {
+                gap: 0;
+                margin-bottom: 3px;
+            }
+
+            h3:after {
+                width: 8%;
+            }
+
+            .receipt-card {
+                margin: 15px auto;
+                padding: 15px;
+                width: 90%;
+            }
+
+            .receipt-card .receipt-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .receipt-card .value {
+                text-align: left;
+                word-break: break-all;
+            }
+
+            label {
+                margin-bottom: 2px;
+                display: block;
+            }
+
+            /* Further reduce gender options gap */
+            .gender-options {
+                gap: 5px;
+                justify-content: space-evenly;
+                margin-top: 2px;
+            }
+
+            .checkbox {
+                gap: 2px;
+                margin-top: 3px;
+            }
+
+            /* Fix terms checkbox alignment */
+            .checkbox label {
+                margin-left: 5px;
+            }
+
+            /* Reduce spacing between sections */
+            h3 {
+                margin-top: 10px;
+                margin-bottom: 3px;
+            }
+        }
+
+        /* Updated margins for mobile and tablet */
+        @media (max-width: 767px) {
+            body {
+                padding: 0 15px;
+            }
+
+            form {
+                margin: 20px auto;
+                padding: 15px;
+                width: 90%;
+            }
+
+            .row div {
+                margin-left: 0;
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="date"],
+            select {
+                margin: 3px 0 8px 0;
+            }
+
+            .receipt-card {
+                margin: 20px auto;
+                width: 90%;
+            }
+        }
+
+        /* Tablet specific margins */
+        @media (min-width: 481px) and (max-width: 767px) {
+            body {
+                padding: 0 20px;
+            }
+
+            form {
+                margin: 40px auto;
+                padding: 25px;
+                width: 90%;
+            }
+        }
+
+        /* Additional styling for select elements to match other inputs */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-color: white;
+            padding: 10px;
+            padding-right: 30px;
+            height: 42px;
+            line-height: 1.5;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 480px) {
+            select {
+                height: 38px;
+                padding: 8px;
+                padding-right: 30px;
+                background-position: right 8px center;
+                line-height: 1.4;
+            }
+        }
+
+        /* Fix for Firefox to ensure consistent height */
+        @-moz-document url-prefix() {
+            select {
+                height: 42px;
+                padding-top: 9px;
+                padding-bottom: 9px;
+            }
+
+            @media (max-width: 480px) {
+                select {
+                    height: 38px;
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                }
             }
         }
     </style>
@@ -335,10 +570,14 @@
         </div>
 
         <div class="row">
-            <div class="checkbox">
+            <div>
                 <label for="gender">Gender:</label>
-                <input type="radio" id="genderMale" name="gender" value="Male" required> Male
-                <input type="radio" id="genderFemale" name="gender" value="Female"> Female
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
             <div>
                 <label for="pan">PAN No:</label>
@@ -549,7 +788,7 @@
                         nationality: document.getElementById('nationality').value,
                         email: document.getElementById('email').value,
                         state: document.getElementById('state').value,
-                        gender: document.querySelector('input[name="gender"]:checked')?.value || '',
+                        gender: document.getElementById('gender').value,
                         pan: document.getElementById('pan').value,
                         maritalStatus: document.getElementById('maritalStatus').value,
                         city: document.getElementById('city').value,

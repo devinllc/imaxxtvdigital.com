@@ -55,8 +55,7 @@
                 <p class="contact-description">Tell us more and we'll find the best solution for you</p>
 
                 <div class="contact-form">
-                    <form method="POST"
-                        action="https://script.google.com/macros/s/AKfycbwGXCP4yY2i2W-QcKU24_ulTHM3xMkzLGagZFA-e_Jh6YGntcHD0x2xv9cL59ksCMoi/exec">
+                    <form id="contactForm">
                         <div class="form-section">
                             <label for="name">Your Name:</label>
                             <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -78,7 +77,8 @@
                             <label for="message">Your Message:</label>
                             <textarea id="message" name="message" placeholder="Tell us more..." required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="submit" id="submitBtn" class="submit-btn">Submit</button>
+                        <div id="formStatus" style="margin-top: 10px; font-weight: bold; text-align: center;"></div>
                     </form>
                 </div>
 
@@ -125,6 +125,236 @@
         function goBacks() {
             window.history.back();
         }
+    </script>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        let app, db;
+
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            console.log("Firebase initialized successfully");
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+            alert("Firebase initialization failed: " + error.message);
+        }
+
+        // Function to show status messages
+        function showStatus(message, isSuccess) {
+            const formStatus = document.getElementById('formStatus');
+            if (!formStatus) {
+                console.error("formStatus element not found");
+                alert(message);
+                return;
+            }
+            formStatus.textContent = message;
+            formStatus.style.color = isSuccess ? "#4CAF50" : "#F44336";
+
+            // Automatically clear success messages after 5 seconds
+            if (isSuccess) {
+                setTimeout(() => {
+                    formStatus.textContent = "";
+                }, 5000);
+            }
+        }
+
+        // Function to validate form data
+        function validateForm(data) {
+            // Basic validation
+            if (!data.name || data.name.trim() === "") {
+                return { valid: false, message: "Name is required" };
+            }
+            if (!data.contact || data.contact.trim() === "") {
+                return { valid: false, message: "Contact number is required" };
+            }
+            if (!data.email || data.email.trim() === "") {
+                return { valid: false, message: "Email is required" };
+            }
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                return { valid: false, message: "Please enter a valid email address" };
+            }
+            if (!data.reason || data.reason.trim() === "") {
+                return { valid: false, message: "Reason for contact is required" };
+            }
+            if (!data.message || data.message.trim() === "") {
+                return { valid: false, message: "Message is required" };
+            }
+
+            return { valid: true };
+        }
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM fully loaded");
+
+            // Get form element
+            const contactForm = document.getElementById('contactForm');
+            if (!contactForm) {
+                console.error("Contact form not found");
+                alert("Contact form not found on page");
+                return;
+            }
+
+            console.log("Contact form found:", contactForm);
+
+            // Add direct click handler to submit button as a backup
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                console.log("Submit button found");
+                submitBtn.onclick = function (e) {
+                    console.log("Submit button clicked directly");
+                    if (!contactForm.checkValidity()) {
+                        console.log("Form is invalid");
+                        return;
+                    }
+                    handleFormSubmit(e);
+                };
+            } else {
+                console.error("Submit button not found");
+                alert("Submit button not found on page");
+            }
+
+            // Add submit event listener to the form
+            contactForm.addEventListener('submit', handleFormSubmit);
+            console.log("Submit event listener added to form");
+
+            // Add event listener to check form validity on input
+            contactForm.addEventListener('input', () => {
+                const submitBtn = document.getElementById('submitBtn');
+                if (submitBtn) {
+                    submitBtn.disabled = !contactForm.checkValidity();
+                }
+            });
+        });
+
+        // Handle form submission
+        async function handleFormSubmit(e) {
+            console.log("Form submission handler called");
+            e.preventDefault();
+
+            // Get form element
+            const contactForm = document.getElementById('contactForm');
+            if (!contactForm) {
+                console.error("Contact form not found in submission handler");
+                alert("Contact form not found on page");
+                return;
+            }
+
+            // Disable submit button to prevent multiple submissions
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            try {
+                // Get form values
+                const name = document.getElementById('name')?.value || '';
+                const contact = document.getElementById('contact')?.value || '';
+                const email = document.getElementById('email')?.value || '';
+                const reason = document.getElementById('reason')?.value || '';
+                const message = document.getElementById('message')?.value || '';
+
+                console.log("Form data collected:", { name, contact, email, reason });
+
+                const contactData = {
+                    name: name,
+                    contact: contact,
+                    email: email,
+                    reason: reason,
+                    message: message,
+                    submission_date: new Date().toISOString(),
+                    timestamp: serverTimestamp()
+                };
+
+                // Validate form data
+                const validation = validateForm(contactData);
+                if (!validation.valid) {
+                    console.log("Validation failed:", validation.message);
+                    showStatus(validation.message, false);
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Submit';
+                    }
+                    return;
+                }
+
+                console.log("Form data validated successfully");
+
+                // Check if Firebase is initialized
+                if (!db) {
+                    const error = new Error("Firebase is not initialized");
+                    console.error(error);
+                    showStatus("Firebase is not initialized. Please refresh the page and try again.", false);
+                    throw error;
+                }
+
+                console.log("Attempting to save to Firebase...");
+
+                // Add document to "contacts" collection
+                const docRef = await addDoc(collection(db, "contacts"), contactData);
+
+                console.log("Document written with ID:", docRef.id);
+
+                // Show success message
+                showStatus("Thank you! Your message has been submitted successfully.", true);
+
+                // Reset form
+                contactForm.reset();
+            } catch (error) {
+                console.error("Error in form submission:", error);
+
+                // Show error message with more details
+                let errorMessage = "Error submitting form. ";
+
+                if (error.code) {
+                    // Firebase specific errors
+                    switch (error.code) {
+                        case 'permission-denied':
+                            errorMessage += "You don't have permission to submit this form.";
+                            break;
+                        case 'unavailable':
+                            errorMessage += "The service is currently unavailable. Please try again later.";
+                            break;
+                        default:
+                            errorMessage += "Please try again later. " + error.message;
+                    }
+                } else {
+                    errorMessage += "Please try again later. " + error.message;
+                }
+
+                showStatus(errorMessage, false);
+                alert("Error: " + errorMessage); // Show alert for visibility
+            } finally {
+                // Re-enable submit button
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                }
+            }
+        }
+
+        // Log that the script has loaded successfully
+        console.log("Contact form script loaded successfully");
     </script>
     <script src="script.js"></script>
 </body>

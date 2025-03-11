@@ -95,7 +95,7 @@
                 rights to distribute it.
                 <br>
                 <span style="font-weight: bold;"> 4. Content Categorization: </span> Ensure your content is properly
-                categorized based on Imaxx TV’s genre
+                categorized based on Imaxx TV's genre
                 requirements. This ensures the right audience finds and engages with your work.
                 <br>
                 <span style="font-weight: bold;"> 5.Compliance with Legal and Ethical Standards: </span> All
@@ -107,7 +107,7 @@
                 <br>
                 <span style="font-weight: bold;"> 6.Timely Submission: </span> Partners should be timely
                 with
-                content submission and adhere to Imaxx TV’s
+                content submission and adhere to Imaxx TV's
                 deadlines for uploading content or new episodes.
                 <br>
                 <span style="font-weight: bold;"> 7.Marketing Commitment: </span> Some platforms may request
@@ -139,26 +139,27 @@
 
 
                     <h2>Become Our Partner</h2>
-                    <form
-                        action="https://script.google.com/macros/s/AKfycbxX3RS-BwU7OK05U7BcCmplBQphxeSFwjfQnRcms2YCim3feOSpoKHpNmaP-7CaaWYX7A/exec"
-                        method="POST" enctype="multipart/form-data">
-                        <input type="text" name="company_name" placeholder="Company Name" required><br>
-                        <input type="text" name="producer_name" placeholder="Producer Name" required><br>
-                        <input type="tel" name="phone" placeholder="Phone" required><br>
-                        <input type="email" name="email" placeholder="Email" required><br>
-                        <input type="text" name="address" placeholder="Address" required><br>
-                        <select name="reason" required>
-                            <option value="">Select a reason</option>
-                            <option value="help">Pitch us your projects</option>
-                            <option value="payment">Sell</option>
-                            <option value="content">Revenue Sharing</option>
-                        </select>
-                        <!-- <br><br> -->
-                        <!-- <label for="uploadDocuments">Upload Documents:</label>
-                <input type="file" id="uploadDocuments" name="uploadDocuments" required multiple><br><br> -->
-                        <textarea name="previous_projects" placeholder="Previous Projects" rows="4"
-                            required></textarea><br>
-                        <button type="submit">Submit</button>
+
+                    <form id="partnerForm">
+                        <input type="text" name="company_name" id="company_name" placeholder="Company Name"
+                            required><br>
+                        <input type="text" name="producer_name" id="producer_name" placeholder="Producer Name"
+                            required><br>
+                        <input type="tel" name="phone" id="phone" placeholder="Phone" required><br>
+                        <input type="email" name="email" id="email" placeholder="Email" required><br>
+                        <input type="text" name="address" id="address" placeholder="Address" required><br>
+                        <div class="select-wrapper">
+                            <select name="reason" id="reason" required>
+                                <option value="">Select a reason</option>
+                                <option value="help">Pitch us your projects</option>
+                                <option value="payment">Sell</option>
+                                <option value="content">Revenue Sharing</option>
+                            </select>
+                        </div>
+                        <textarea name="previous_projects" id="previous_projects" placeholder="Previous Projects"
+                            rows="4" required></textarea><br>
+                        <button type="submit" id="submitBtn">Submit</button>
+                        <div id="formStatus" style="margin-top: 10px; font-weight: bold;"></div>
                     </form>
                 </div>
                 <!-- <br><br> <br> -->
@@ -226,7 +227,245 @@
         }
     </script>
 
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        let app, db;
+
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            console.log("Firebase initialized successfully");
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+            alert("Firebase initialization failed: " + error.message);
+        }
+
+        // Function to show status messages
+        function showStatus(message, isSuccess) {
+            const formStatus = document.getElementById('formStatus');
+            if (!formStatus) {
+                console.error("formStatus element not found");
+                alert(message);
+                return;
+            }
+            formStatus.textContent = message;
+            formStatus.style.color = isSuccess ? "#4CAF50" : "#F44336";
+
+            // Automatically clear success messages after 5 seconds
+            if (isSuccess) {
+                setTimeout(() => {
+                    formStatus.textContent = "";
+                }, 5000);
+            }
+        }
+
+        // Function to validate form data
+        function validateForm(data) {
+            // Basic validation
+            if (!data.company_name || data.company_name.trim() === "") {
+                return { valid: false, message: "Company name is required" };
+            }
+            if (!data.producer_name || data.producer_name.trim() === "") {
+                return { valid: false, message: "Producer name is required" };
+            }
+            if (!data.phone || data.phone.trim() === "") {
+                return { valid: false, message: "Phone number is required" };
+            }
+            if (!data.email || data.email.trim() === "") {
+                return { valid: false, message: "Email is required" };
+            }
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                return { valid: false, message: "Please enter a valid email address" };
+            }
+            if (!data.address || data.address.trim() === "") {
+                return { valid: false, message: "Address is required" };
+            }
+            if (!data.reason || data.reason === "") {
+                return { valid: false, message: "Please select a reason" };
+            }
+            if (!data.previous_projects || data.previous_projects.trim() === "") {
+                return { valid: false, message: "Previous projects information is required" };
+            }
+
+            return { valid: true };
+        }
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM fully loaded");
+
+            // Get form element
+            const partnerForm = document.getElementById('partnerForm');
+            if (!partnerForm) {
+                console.error("Partner form not found");
+                alert("Partner form not found on page");
+                return;
+            }
+
+            console.log("Partner form found:", partnerForm);
+
+            // Add direct click handler to submit button as a backup
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                console.log("Submit button found");
+                submitBtn.onclick = function (e) {
+                    console.log("Submit button clicked directly");
+                    if (!partnerForm.checkValidity()) {
+                        console.log("Form is invalid");
+                        return;
+                    }
+                    handleFormSubmit(e);
+                };
+            } else {
+                console.error("Submit button not found");
+                alert("Submit button not found on page");
+            }
+
+            // Add submit event listener to the form
+            partnerForm.addEventListener('submit', handleFormSubmit);
+            console.log("Submit event listener added to form");
+
+            // Add event listener to check form validity on input
+            partnerForm.addEventListener('input', () => {
+                const submitBtn = document.getElementById('submitBtn');
+                if (submitBtn) {
+                    submitBtn.disabled = !partnerForm.checkValidity();
+                }
+            });
+        });
+
+        // Handle form submission
+        async function handleFormSubmit(e) {
+            console.log("Form submission handler called");
+            e.preventDefault();
+
+            // Get form element
+            const partnerForm = document.getElementById('partnerForm');
+            if (!partnerForm) {
+                console.error("Partner form not found in submission handler");
+                alert("Partner form not found on page");
+                return;
+            }
+
+            // Disable submit button to prevent multiple submissions
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            try {
+                // Get form values
+                const companyName = document.getElementById('company_name')?.value || '';
+                const producerName = document.getElementById('producer_name')?.value || '';
+                const phone = document.getElementById('phone')?.value || '';
+                const email = document.getElementById('email')?.value || '';
+                const address = document.getElementById('address')?.value || '';
+                const reason = document.getElementById('reason')?.value || '';
+                const previousProjects = document.getElementById('previous_projects')?.value || '';
+
+                console.log("Form data collected:", { companyName, producerName, phone, email });
+
+                const partnerData = {
+                    company_name: companyName,
+                    producer_name: producerName,
+                    phone: phone,
+                    email: email,
+                    address: address,
+                    reason: reason,
+                    previous_projects: previousProjects,
+                    submission_date: new Date().toISOString(),
+                    timestamp: serverTimestamp()
+                };
+
+                // Validate form data
+                const validation = validateForm(partnerData);
+                if (!validation.valid) {
+                    console.log("Validation failed:", validation.message);
+                    showStatus(validation.message, false);
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Submit';
+                    }
+                    return;
+                }
+
+                console.log("Form data validated successfully");
+
+                // Check if Firebase is initialized
+                if (!db) {
+                    const error = new Error("Firebase is not initialized");
+                    console.error(error);
+                    showStatus("Firebase is not initialized. Please refresh the page and try again.", false);
+                    throw error;
+                }
+
+                console.log("Attempting to save to Firebase...");
+
+                // Add document to "partners" collection
+                const docRef = await addDoc(collection(db, "partners"), partnerData);
+
+                console.log("Document written with ID:", docRef.id);
+
+                // Show success message
+                showStatus("Thank you! Your application has been submitted successfully.", true);
+
+                // Reset form
+                partnerForm.reset();
+            } catch (error) {
+                console.error("Error in form submission:", error);
+
+                // Show error message with more details
+                let errorMessage = "Error submitting form. ";
+
+                if (error.code) {
+                    // Firebase specific errors
+                    switch (error.code) {
+                        case 'permission-denied':
+                            errorMessage += "You don't have permission to submit this form.";
+                            break;
+                        case 'unavailable':
+                            errorMessage += "The service is currently unavailable. Please try again later.";
+                            break;
+                        default:
+                            errorMessage += "Please try again later. " + error.message;
+                    }
+                } else {
+                    errorMessage += "Please try again later. " + error.message;
+                }
+
+                showStatus(errorMessage, false);
+                alert("Error: " + errorMessage); // Show alert for visibility
+            } finally {
+                // Re-enable submit button
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                }
+            }
+        }
+
+        // Log that the script has loaded successfully
+        console.log("Partner form script loaded successfully");
+    </script>
 
 </body>
 
