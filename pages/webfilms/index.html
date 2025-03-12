@@ -38,14 +38,14 @@
 
 
                     <div class="card vertical"
-                        onclick="showDetail('AKHRI KHAT', 'Trending now. Don\'t miss out!', '/Assests/filmss/6 2.png')">
+                        onclick="showDetail('AKHRI KHAT', 'Trending now. Don\'t miss out!', '/Assests/filmss/6 2.png', 'https://www.youtube.com/embed/YOUR_VIDEO_ID_1')">
                         <img src="/Assests/filmss/6 2.png" alt="Show 1">
                         <h3>AKHRI KHAT</h3>
                         <p>Trending now. Don't miss out!</p>
                     </div>
 
                     <div class="card horizontal"
-                        onclick="showDetail('70\'S SHAADI', 'Watch now for exclusive content.', '/Assests/filmss/4.png')">
+                        onclick="showDetail('70\'S SHAADI', 'Watch now for exclusive content.', '/Assests/filmss/4.png', 'https://www.youtube.com/embed/YOUR_VIDEO_ID_2')">
                         <img src="/Assests/filmss/4.png" alt="Show 2">
                         <h3>70'S SHAADI</h3>
                         <p>Watch now for exclusive content.</p>
@@ -226,22 +226,15 @@
         <!-- Detail Section (Initially hidden) -->
         <div id="details" style="display: none;">
             <h1>Show Details</h1>
-
             <div class="details-container">
                 <div class="detail-card">
-                    <img id="show-image" src="default.jpg" alt="Show Image">
+                    <div class="video-container">
+                        <iframe id="show-video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <h2 id="show-title">Show Title</h2>
-                    <p class="short-description">Trending now. Don't miss out!</p>
-
-                    <h3>Detailed Description</h3>
-                    <p id="show-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum
-                        interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Mauris at ante
-                        a sapien consequat consectetur.
-                    </p>
-
-                    <!-- <a href="#" class="btn-watch">Watch Now</a> -->
-                    <br>
+                    <p id="show-description"></p>
                     <button class="btn-watch" onclick="goBack()">Back</button>
                 </div>
             </div>
@@ -280,27 +273,22 @@
 
     <script src="script.js"></script>
     <script>
-        // Function to display show details
-        function showsDetail(title, description, imgSrc) {
-            // Hide the shows section
-            document.getElementById('shows').style.display = 'none';
-            // Show the detail section
+        function showDetail(title, description, image, videoUrl = '') {
             document.getElementById('details').style.display = 'block';
-
-            // Populate the details section
+            document.getElementById('shows').style.display = 'none';
             document.getElementById('show-title').textContent = title;
             document.getElementById('show-description').textContent = description;
-            document.getElementById('show-image').src = imgSrc ? imgSrc : 'default.jpg';
-            document.getElementById('mbcbtn').style.display = 'none';
+
+            const videoFrame = document.getElementById('show-video');
+            // Use the provided video URL or default to the example video
+            videoFrame.src = videoUrl || 'https://www.youtube.com/embed/y5UYNTzNTt4?si=3PVqcG8Lfni3aor2';
         }
 
-        // Function to go back to the shows section
         function goBack() {
-            // Hide the details section
+            const videoFrame = document.getElementById('show-video');
+            videoFrame.src = ''; // Stop video playback
             document.getElementById('details').style.display = 'none';
-            // Show the shows section
             document.getElementById('shows').style.display = 'block';
-            document.getElementById('mbcbtn').style.display = 'block';
         }
     </script>
 </body>
