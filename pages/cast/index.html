@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Cast</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #mbcbtns {
+            z-index: 999;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: block !important;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="page">
+        <h1>CAST</h1>
+
+        <!-- Search and Filter Section -->
+        <div class="filter-search">
+            <input type="text" id="search-bar" placeholder="Search for cast members..." oninput="filterCast()">
+        </div>
+
+        <!-- Cast Categories -->
+        <div class="tabs">
+            <button class="tab-button" onclick="showSection('actors')">Actors</button>
+            <button class="tab-button" onclick="showSection('directors')">Directors</button>
+            <button class="tab-button" onclick="showSection('producers')">Producers</button>
+            <button class="tab-button" onclick="showSection('writers')">Writers</button>
+        </div>
+
+        <!-- Cast Sections -->
+        <div id="cast-sections">
+            <section id="actors" class="show-section">
+                <h2>Actors</h2>
+                <div class="show-cards" id="actors-container">
+                    <div class="loader">Loading actors...</div>
+                </div>
+            </section>
+
+            <section id="directors" class="show-section">
+                <h2>Directors</h2>
+                <div class="show-cards" id="directors-container">
+                    <div class="loader">Loading directors...</div>
+                </div>
+            </section>
+
+            <section id="producers" class="show-section">
+                <h2>Producers</h2>
+                <div class="show-cards" id="producers-container">
+                    <div class="loader">Loading producers...</div>
+                </div>
+            </section>
+
+            <section id="writers" class="show-section">
+                <h2>Writers</h2>
+                <div class="show-cards" id="writers-container">
+                    <div class="loader">Loading writers...</div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Cache for storing fetched data
+        const castCache = {
+            actors: [],
+            directors: [],
+            producers: [],
+            writers: []
+        };
+
+        // Function to load all cast members
+        async function loadAllCast() {
+            try {
+                await Promise.all([
+                    loadCast('actors', 'actors-container'),
+                    loadCast('directors', 'directors-container'),
+                    loadCast('producers', 'producers-container'),
+                    loadCast('writers', 'writers-container')
+                ]);
+
+                // Show actors section by default
+                showSection('actors');
+            } catch (error) {
+                console.error("Error loading cast:", error);
+                displayErrorMessage(error.message);
+            }
+        }
+
+        // Function to load cast members for a specific category
+        async function loadCast(category, containerId) {
+            try {
+                const container = document.getElementById(containerId);
+
+                // Check cache first
+                if (castCache[category].length > 0) {
+                    displayCast(castCache[category], containerId);
+                    return;
+                }
+
+                console.log(`Fetching cast members for category: ${category}`);
+
+                // Query the cast collection
+                const castRef = collection(db, "cast");
+                const q = query(
+                    castRef,
+                    where("category", "==", category)
+                );
+
+                const querySnapshot = await getDocs(q);
+                const cast = [];
+
+                if (querySnapshot.empty) {
+                    console.log(`No cast members found for category: ${category}`);
+                    const fallbackData = createFallbackCastData(category);
+                    castCache[category] = fallbackData;
+                    displayCast(fallbackData, containerId);
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    cast.push({
+                        id: doc.id,
+                        name: data.name,
+                        role: data.role,
+                        imageUrl: data.imageUrl,
+                        bio: data.bio,
+                        category: data.category
+                    });
+                });
+
+                castCache[category] = cast;
+                displayCast(cast, containerId);
+
+            } catch (error) {
+                console.error(`Error loading ${category}:`, error);
+                const fallbackData = createFallbackCastData(category);
+                castCache[category] = fallbackData;
+                displayCast(fallbackData, containerId);
+            }
+        }
+
+        // Function to create fallback cast data
+        function createFallbackCastData(category) {
+            const fallbackData = {
+                'actors': [
+                    {
+                        id: 'fallback-actor-1',
+                        name: "Sample Actor",
+                        role: "Lead Role",
+                        imageUrl: "/Assests/images/placeholder.jpg",
+                        bio: "A talented actor with years of experience.",
+                        category: "actors"
+                    }
+                ],
+                'directors': [
+                    {
+                        id: 'fallback-director-1',
+                        name: "Sample Director",
+                        role: "Film Director",
+                        imageUrl: "/Assests/images/placeholder.jpg",
+                        bio: "An award-winning director known for their unique style.",
+                        category: "directors"
+                    }
+                ],
+                'producers': [
+                    {
+                        id: 'fallback-producer-1',
+                        name: "Sample Producer",
+                        role: "Executive Producer",
+                        imageUrl: "/Assests/images/placeholder.jpg",
+                        bio: "A successful producer with multiple hit projects.",
+                        category: "producers"
+                    }
+                ],
+                'writers': [
+                    {
+                        id: 'fallback-writer-1',
+                        name: "Sample Writer",
+                        role: "Screenwriter",
+                        imageUrl: "/Assests/images/placeholder.jpg",
+                        bio: "A creative writer with a passion for storytelling.",
+                        category: "writers"
+                    }
+                ]
+            };
+
+            return fallbackData[category] || [];
+        }
+
+        // Function to display cast members
+        function displayCast(cast, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            if (cast.length === 0) {
+                container.innerHTML = '<div class="no-data">No cast members available</div>';
+                return;
+            }
+
+            cast.forEach(member => {
+                const card = createCastCard(member);
+                container.appendChild(card);
+            });
+        }
+
+        // Function to create a cast card
+        function createCastCard(member) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${member.imageUrl}" alt="${member.name}" loading="lazy">
+                <h3>${member.name}</h3>
+                <p class="role">${member.role}</p>
+                <p class="bio">${member.bio}</p>
+            `;
+            return card;
+        }
+
+        // Function to display error message
+        function displayErrorMessage(errorMessage = '') {
+            const containers = [
+                'actors-container', 'directors-container',
+                'producers-container', 'writers-container'
+            ];
+
+            const errorHtml = `
+                <div class="error">
+                    <p>Error loading cast members. Please try again later.</p>
+                    ${errorMessage ? `<p class="error-details">${errorMessage}</p>` : ''}
+                </div>
+            `;
+
+            containers.forEach(containerId => {
+                const container = document.getElementById(containerId);
+                container.innerHTML = errorHtml;
+            });
+        }
+
+        // Function to filter cast members
+        window.filterCast = function() {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const role = card.querySelector('.role').textContent.toLowerCase();
+                const bio = card.querySelector('.bio').textContent.toLowerCase();
+
+                if (name.includes(searchTerm) || role.includes(searchTerm) || bio.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
+
+        // Function to show section
+        window.showSection = function(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.show-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+
+            // Update tab button styles
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+                if (button.textContent.toLowerCase() === sectionId) {
+                    button.classList.add('active');
+                }
+            });
+        };
+
+        // Load cast when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllCast();
+        });
+    </script>
+</body>
+</html> 

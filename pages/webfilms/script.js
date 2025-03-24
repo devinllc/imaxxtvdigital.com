@@ -1,6 +1,29 @@
 function openDetailPage(title, description, imgSrc) {
-    // Show popup instead of navigating to a different page
-    showPopup(title, description, imgSrc);
+    const popup = document.getElementById('media-popup');
+    const popupImg = document.getElementById('popup-img');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDescription = document.getElementById('popup-description');
+    const watchNowBtn = document.getElementById('watch-now-btn');
+    const addToListBtn = document.getElementById('add-to-list-btn');
+
+    // Set content
+    popupImg.src = imgSrc;
+    popupTitle.textContent = title;
+    popupDescription.textContent = description;
+
+    // Show popup
+    popup.style.display = 'flex';
+
+    // Add event listeners for buttons
+    watchNowBtn.onclick = () => {
+        // Handle watch now action
+        console.log('Watch Now clicked for:', title);
+    };
+
+    addToListBtn.onclick = () => {
+        // Handle add to list action
+        console.log('Add to List clicked for:', title);
+    };
 }
 
 function showPopup(title, description, imgSrc) {
@@ -46,21 +69,26 @@ function handlePopState(event) {
     }
 }
 
-// Function to switch between sections
+// Function to show section
 function showSection(sectionId) {
-    const sections = document.querySelectorAll('.show-section');
-    sections.forEach(section => section.style.display = 'none'); // Hide all sections
-    document.getElementById(sectionId).style.display = 'block';  // Show the selected section
-
-    // Remove active class from all tab buttons
-    const tabs = document.querySelectorAll('.tab-button');
-    tabs.forEach(tab => {
-        tab.classList.remove('active-tab');
+    // Hide all sections
+    document.querySelectorAll('.show-section').forEach(section => {
+        section.style.display = 'none';
     });
 
-    // Add active class to the clicked tab button
-    const activeTab = document.querySelector(`.tab-button[onclick="showSection('${sectionId}')"]`);
-    activeTab.classList.add('active-tab');
+    // Show the selected section
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+    }
+
+    // Update tab button styles
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+        if (button.textContent.toLowerCase().replace(/\s+/g, '-') === sectionId) {
+            button.classList.add('active');
+        }
+    });
 }
 
 // Back button function
@@ -111,35 +139,19 @@ document.addEventListener('DOMContentLoaded', function () {
     document.head.appendChild(universalBackButtonScript);
 });
 
-// Function to filter shows by search term across all sections
+// Function to filter shows based on search input
 function filterShows() {
-    const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+    const searchInput = document.getElementById('search-bar').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
 
-    // Loop through all sections
-    document.querySelectorAll('.show-section').forEach(section => {
-        // Loop through all cards in the section
-        section.querySelectorAll('.card').forEach(card => {
-            const title = card.querySelector('h3').textContent.toLowerCase();
-            const description = card.querySelector('p').textContent.toLowerCase();
+    cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
 
-            // Check if the title or description matches the search query
-            const matchesSearch = title.includes(searchQuery) || description.includes(searchQuery);
-
-            if (matchesSearch) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        // Check if the section has any visible cards
-        const hasVisibleCards = Array.from(section.querySelectorAll('.card')).some(card => card.style.display === 'block');
-
-        // Show or hide the section based on the presence of visible cards
-        if (hasVisibleCards) {
-            section.style.display = 'block';
+        if (title.includes(searchInput) || description.includes(searchInput)) {
+            card.style.display = 'block';
         } else {
-            section.style.display = 'none';
+            card.style.display = 'none';
         }
     });
 }
@@ -646,3 +658,27 @@ function addChatStyles() {
         }
     }, 100);
 }
+
+// Close popup when clicking outside
+document.addEventListener('click', (event) => {
+    const popup = document.getElementById('media-popup');
+    if (event.target === popup) {
+        closePopup();
+    }
+});
+
+// Close popup with Escape key
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closePopup();
+    }
+});
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', () => {
+    // Show trending section by default
+    showSection('trendins');
+
+    // Add active class to trending tab
+    document.querySelector('.tab-button').classList.add('active');
+});

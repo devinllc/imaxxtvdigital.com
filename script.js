@@ -582,3 +582,9 @@ function scrollToBottom() {
 document.addEventListener('DOMContentLoaded', function () {
   initializeChat();
 });
+
+// Meeting Scheduler Function
+function scheduleMeeting() {
+  // You can replace this with your preferred meeting scheduling service
+  window.open('https://calendly.com/your-calendly-link', '_blank');
+}
