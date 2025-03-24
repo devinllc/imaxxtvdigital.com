@@ -184,7 +184,7 @@ h2 {
     color: #000;
 }
 
-#mbcbtn {
+<<<<<<< HEAD #mbcbtn {
     z-index: 0;
     position: fixed;
     bottom: 20px;
@@ -208,6 +208,8 @@ h2 {
 #mbcbtn:hover {
     cursor: pointer;
 }
+
+=======>>>>>>>backup-main
 
 /* fintersssss */
 .filter-search {
@@ -296,6 +298,8 @@ h2 {
 
 }
 
+<<<<<<< HEAD
+
 /* Media Container Styles */
 #media-container {
     width: 100%;
@@ -349,4 +353,38 @@ h2 {
     .video-container iframe {
         min-height: 300px;
     }
-}
+
+    =======#mbcbtn {
+        z-index: 0;
+        position: sticky;
+        bottom: 20px;
+        left: 20px;
+    }
+
+    #mbcbtns {
+        z-index: 100;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .btn-watch {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 25px;
+        background-color: transparent;
+        color: #ffffff;
+        text-shadow: 2px 2px 30px #D1B261;
+        border: none;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-watch:hover {
+        text-shadow: 2px 2px 30px #D1B261;
+        cursor: pointer;
+        >>>>>>>backup-main
+    }

@@ -8,10 +8,10 @@ function showPopup(name, role, email, imgSrc, bio, linkins) {
     const anchorTag = document.getElementById('linkedins');
     anchorTag.href = linkins;
     document.getElementById('team-popup').style.display = 'flex';
-    document.getElementById('mbcbtn').style.display = 'none';
+    document.getElementById('mbcbtns').style.display = 'none';
 }
 
 function closePopup() {
     document.getElementById('team-popup').style.display = 'none';
-    document.getElementById('mbcbtn').style.display = 'block';
+    document.getElementById('mbcbtns').style.display = 'block';
 }

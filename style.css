@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     color: aliceblue;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Apply custom font and general styles for headings */
@@ -12,8 +12,6 @@
     src: url('Assests/BigShouldersDisplay-VariableFont_wght.ttf') format('woff2'),
         url('Assests/BigShouldersDisplay-VariableFont_wght.ttf') format('woff');
     font-weight: normal;
-    color: #FFFFFF;
-    line-height: 1.9;
     font-style: normal;
 }
 
@@ -22,30 +20,68 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
-}
-
+h6,
 a {
     font-family: 'Montserrat', sans-serif;
     font-weight: normal;
-    text-decoration: none;
+    color: white;
 }
 
 /* Base styles for body */
 html,
 body {
-    background-color: #000;
+    background-color: black;
     font-family: 'Montserrat', sans-serif;
     width: 100%;
     height: 100%;
+    color: white;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Common button style used across the site */
+.btn-gold {
+    background-color: #D1B261;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-gold:hover {
+    background-color: #b99b4f;
+    transform: translateY(-2px);
+}
+
+/* Consistent form input styling */
+input,
+textarea,
+select {
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.7);
     color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #D1B261;
+    box-shadow: 0 0 0 2px rgba(209, 178, 97, 0.25);
 }
 
 /* Styles for navigation */
 #nav {
-    height: 220px;
+    height: 100px;
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -55,13 +91,14 @@ body {
     position: fixed;
     z-index: 99;
     background-color: transparent;
-    /* Ensure nav bar is visible on scroll */
+    transition: all 0.3s ease;
 }
 
 #imgss img {
     margin-left: -90px;
-    width: 240px;
+    width: 200px;
     height: auto;
+    transition: all 0.3s ease;
 }
 
 .bggg {
@@ -75,23 +112,24 @@ body {
 #buttionss {
     position: absolute;
     left: 42%;
-    bottom: 10%;
+    top: 90%;
 }
 
 #nav a {
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
 /* Hover effects for navigation links */
 #nav a:hover,
 #nav a:active {
     cursor: pointer;
-    text-shadow: 4px 4px 12px #D1B261;
-    transition: background-color 0.4s ease;
-    font-weight: bolder;
-    padding: 10px;
-    border-radius: 10px;
+    background-color: rgba(209, 178, 97, 0.2);
+    text-shadow: 0 0 10px #D1B261;
+    font-weight: bold;
 }
 
 /* Hamburger Menu */
@@ -104,6 +142,7 @@ body {
     right: 20px;
     z-index: 1000;
     transform: translateY(-50%);
+    color: #D1B261;
 }
 
 /* Carousel Styles */
@@ -113,7 +152,6 @@ body {
     background-color: black;
     overflow: hidden;
     height: 100vh;
-
 }
 
 #imagsssss {
@@ -992,7 +1030,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-transform: uppercase;
+    text-transform: capitalize;
     text-shadow: 2px 2px 8px #D1B261;
     font-size: 22px;
     font-weight: bold;
@@ -1019,7 +1057,7 @@ body {
 .faq-answer {
     font-size: 22px;
     /* font-family: 'Montserrat', sans-serif; */
-    text-transform: uppercase;
+    text-transform: capitalize;
     word-spacing: 2px;
     text-shadow: 2px 2px 8px #D1B261;
     display: none;
@@ -1134,5 +1172,284 @@ body {
         width: 80px;
         object-fit: contain;
         z-index: 10000;
+    }
+}
+
+/* Chat Widget Styles */
+.chat-support {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.chat-toggle {
+    width: auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chat-toggle i {
+    font-size: 18px;
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background-color: #000;
+    border: 1px solid #D1B261;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(209, 178, 97, 0.1);
+    border-bottom: 1px solid rgba(209, 178, 97, 0.3);
+}
+
+.chat-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-status-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    position: relative;
+}
+
+.chat-status-indicator::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.chat-header h3 {
+    color: #D1B261;
+    margin: 0;
+    font-size: 18px;
+}
+
+.chat-close-btn {
+    background: none;
+    border: none;
+    color: #D1B261;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.2s ease;
+}
+
+.chat-close-btn:hover {
+    transform: scale(1.1);
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(209, 178, 97, 0.5);
+    border-radius: 10px;
+}
+
+.chat-input-container {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid rgba(209, 178, 97, 0.3);
+}
+
+.chat-input-container input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(209, 178, 97, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 14px;
+}
+
+.chat-send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-message {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: rgba(209, 178, 97, 0.2);
+    border-bottom-right-radius: 5px;
+    color: white;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom-left-radius: 5px;
+    color: white;
+}
+
+.chat-time {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+    text-align: right;
+}
+
+.chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.chat-suggestion {
+    background-color: rgba(209, 178, 97, 0.1);
+    border: 1px solid rgba(209, 178, 97, 0.3);
+    border-radius: 15px;
+    padding: 5px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chat-suggestion:hover {
+    background-color: rgba(209, 178, 97, 0.3);
+}
+
+.typing-indicator {
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: typingAnimation 1.5s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingAnimation {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-8px);
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-container {
+        width: 90%;
+        right: 5%;
+        bottom: 80px;
+    }
+
+    .chat-toggle {
+        right: 10px;
     }
 }

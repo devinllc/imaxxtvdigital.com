@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMAXX TV</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,6 @@
     <!-- Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <!-- Open Sans Font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -48,11 +48,9 @@
                 <h4>CONTEST</h4>
             </a>
             <a href="pages/programs/index.html">
-
                 <h4>PARTNER'S PROGRAM</h4>
             </a>
             <a href="pages/contacts/index.html">
-
                 <h4>CONTACT US</h4>
             </a>
 
@@ -102,10 +100,11 @@
                     </div>
 
                 </div>
-                <div class="footer-message" id="buttionss">
+                <div class="footer-message" id="buttionss"
+                    style="position: absolute; left: 50%; bottom: 10%; transform: translateX(-50%);">
                     <form id="phoneForm" class="footer-message">
                         <input type="number" maxlength="10" id="phoneNumber" name="phoneNumber"
-                            placeholder="Enter your Number" required>
+                            placeholder="Enter your Number" required style="color: white;">
                         <button type="submit" class="message-btn">
                             <i class="fa fa-paper-plane"></i>
                         </button>
@@ -265,11 +264,13 @@
                     <!-- <h3>Quick Links</h3> -->
                     <ul>
                         <!-- <li><a href="#">About</a></li> -->
-                        <li><a href="pages/plans/plans.html">Subscriptions</a>
+                        <li><a href="pages/plans/plans.html" class="footer-link">Subscriptions</a>
                         </li>
-                        <li><a href="/pages/showpdf/index.html?pdf=/Assests/pdfs/faq.pdf">FAQ</a></li>
-                        <li><a href="/pages/coupons/coupons.html">Coupons</a></li>
-                        <li><a href="/pages/showpdf/index.html?pdf=/Assests/pdfs/legal notices (1).pdf">Legal Notice</a>
+                        <li><a href="/pages/showpdf/index.html?pdf=/Assests/pdfs/faq.pdf" class="footer-link">FAQ</a>
+                        </li>
+                        <li><a href="/pages/coupons/coupons.html" class="footer-link">Coupons</a></li>
+                        <li><a href="/pages/showpdf/index.html?pdf=/Assests/pdfs/legal notices (1).pdf"
+                                class="footer-link">Legal Notice</a>
                         </li>
                     </ul>
                 </div>
@@ -349,7 +350,7 @@
                     <div class="footer-messages">
                         <form id="emailForm" class="footer-messages">
                             <input type="email" id="emailAddress" name="emailAddress" placeholder="Enter your email"
-                                required>
+                                required style="color: white;">
                             <button type="submit" class="message-btns">
                                 <i class="fa fa-paper-plane"></i>
                             </button>
@@ -614,6 +615,49 @@
         integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js"></script>
+    <script src="chat.js"></script>
+
+    <!-- Chat Widget -->
+    <div class="chat-support">
+        <button id="chat-toggle-btn" class="chat-toggle btn-gold" onclick="toggleChat()">
+            <i class="fas fa-comments"></i> Support
+        </button>
+
+        <div id="chat-container" class="chat-container">
+            <div class="chat-header">
+                <div class="chat-header-title">
+                    <div class="chat-status-indicator"></div>
+                    <h3>IMAXX Support</h3>
+                </div>
+                <button class="chat-close-btn" onclick="toggleChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div id="chat-messages" class="chat-messages"></div>
+
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type your message..."
+                    onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button class="chat-send-btn btn-gold" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script to ensure back buttons on all footer links -->
+    <script>
+        // Add back button to all footer links on click
+        document.addEventListener('DOMContentLoaded', function () {
+            const footerLinks = document.querySelectorAll('.footer a, .footer-link');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    localStorage.setItem('needsBackButton', 'true');
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

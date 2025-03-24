@@ -76,19 +76,50 @@ h3 {
 
 .btn-watch {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 25px;
-    background-color: #D1B261;
-    color: #000;
-    font-size: 1rem;
-    font-weight: 700;
+    padding: 10px 20px;
+    background-color: #d91921;
+    color: #ffffff;
+    border: none;
     border-radius: 8px;
-    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
     transition: background-color 0.3s ease;
 }
 
 .btn-watch:hover {
-    background-color: #D1B261;
+    background-color: #af1518;
+}
+
+/* Enhanced back button styling */
+#mbcbtn {
+    z-index: 999;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    border: 1px solid #D1B261;
+    text-shadow: 2px 2px 6px #D1B261;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+}
+
+#mbcbtn:hover {
+    cursor: pointer;
+    background-color: rgba(209, 178, 97, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(209, 178, 97, 0.7);
+}
+
+#mbcbtn:active {
+    transform: translateY(0);
 }
 
 /* Media Queries for Mobile */

@@ -4,10 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Details</title>
+    <title>IMAXX TV - Content Details</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        #mbcbtns {
+            z-index: 100;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 
 <body>
@@ -35,6 +65,12 @@
 
     </div>
 
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBacks()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
     <script>
         // Get the URL parameters and populate the detail page
         const params = new URLSearchParams(window.location.search);
@@ -45,9 +81,15 @@
         // Update the content dynamically
         document.getElementById('show-title').textContent = title;
         document.getElementById('show-description').textContent = description;
-        
+
         // Ensure correct image path without prefixing folder path again
         document.getElementById('show-image').src = imgSrc ? imgSrc : 'default.jpg';
+    </script>
+
+    <script>
+        function goBacks() {
+            window.history.back();
+        }
     </script>
 
 </body>
