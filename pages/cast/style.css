@@ -164,6 +164,118 @@ h2 {
     color: #ff8888;
 }
 
+/* Cast Form Section */
+.cast-form-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(209, 178, 97, 0.2);
+}
+
+.cast-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.cast-form input,
+.cast-form select,
+.cast-form textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(209, 178, 97, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D1B261'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    padding-right: 45px;
+}
+
+.cast-form textarea {
+    background-image: none;
+    padding-right: 15px;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.cast-form input:focus,
+.cast-form select:focus,
+.cast-form textarea:focus {
+    outline: none;
+    border-color: #D1B261;
+    box-shadow: 0 0 10px rgba(209, 178, 97, 0.2);
+}
+
+.cast-form select {
+    cursor: pointer;
+}
+
+.cast-form select option {
+    background-color: #000;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.cast-form button {
+    width: 100%;
+    padding: 15px;
+    background: #D1B261;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.cast-form button:hover {
+    background: #c4a354;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(209, 178, 97, 0.3);
+}
+
+.cast-form button:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.form-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Cast Display Section */
+.cast-display {
+    margin-top: 40px;
+}
+
+.card .category {
+    color: #D1B261;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    text-transform: capitalize;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .show-cards {
@@ -183,6 +295,22 @@ h2 {
     .tab-button {
         padding: 8px 15px;
         font-size: 14px;
+    }
+
+    .cast-form-section {
+        padding: 25px;
+    }
+
+    .cast-form input,
+    .cast-form select,
+    .cast-form textarea {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .cast-form button {
+        padding: 12px;
+        font-size: 1rem;
     }
 }
 
@@ -205,5 +333,21 @@ h2 {
 
     .card .bio {
         font-size: 0.8rem;
+    }
+
+    .cast-form-section {
+        padding: 20px;
+    }
+
+    .cast-form input,
+    .cast-form select,
+    .cast-form textarea {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .cast-form button {
+        padding: 12px;
+        font-size: 1rem;
     }
 }

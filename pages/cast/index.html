@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMAXX TV - Cast</title>
     <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         #mbcbtns {
@@ -39,53 +41,64 @@
         }
     </style>
 </head>
+
 <body>
     <div id="page">
-        <h1>CAST</h1>
+        <!-- <h1>Casting</h1> -->
 
         <!-- Search and Filter Section -->
-        <div class="filter-search">
+        <!-- <div class="filter-search">
             <input type="text" id="search-bar" placeholder="Search for cast members..." oninput="filterCast()">
+        </div> -->
+
+        <!-- Cast Form Section -->
+        <div class="cast-form-section">
+            <h2>Casting Application Form</h2>
+            <form id="castForm" class="cast-form">
+                <div class="form-group">
+                    <input type="text" name="name" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <select name="category" id="category" required>
+                        <option value="">Select Your Role</option>
+                        <option value="actors">Actor</option>
+                        <option value="directors">Director</option>
+                        <option value="producers">Producer</option>
+                        <option value="writers">Writer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="role" id="role" placeholder="Specific Role/Position" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" id="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="experience" id="experience" placeholder="Years of Experience" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="bio" id="bio" placeholder="Tell us about yourself and your experience" rows="4"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea name="portfolio" id="portfolio" placeholder="List your previous work/projects" rows="4"
+                        required></textarea>
+                </div>
+                <button type="submit" id="submitBtn">Submit Application</button>
+                <div id="formStatus" class="form-status"></div>
+            </form>
         </div>
 
-        <!-- Cast Categories -->
-        <div class="tabs">
-            <button class="tab-button" onclick="showSection('actors')">Actors</button>
-            <button class="tab-button" onclick="showSection('directors')">Directors</button>
-            <button class="tab-button" onclick="showSection('producers')">Producers</button>
-            <button class="tab-button" onclick="showSection('writers')">Writers</button>
-        </div>
-
-        <!-- Cast Sections -->
-        <div id="cast-sections">
-            <section id="actors" class="show-section">
-                <h2>Actors</h2>
-                <div class="show-cards" id="actors-container">
-                    <div class="loader">Loading actors...</div>
-                </div>
-            </section>
-
-            <section id="directors" class="show-section">
-                <h2>Directors</h2>
-                <div class="show-cards" id="directors-container">
-                    <div class="loader">Loading directors...</div>
-                </div>
-            </section>
-
-            <section id="producers" class="show-section">
-                <h2>Producers</h2>
-                <div class="show-cards" id="producers-container">
-                    <div class="loader">Loading producers...</div>
-                </div>
-            </section>
-
-            <section id="writers" class="show-section">
-                <h2>Writers</h2>
-                <div class="show-cards" id="writers-container">
-                    <div class="loader">Loading writers...</div>
-                </div>
-            </section>
-        </div>
+        <!-- Cast Display Section -->
+        <!-- <div class="cast-display">
+            <h2>Current Cast Members</h2>
+            <div class="show-cards" id="cast-container">
+                <div class="loader">Loading cast members...</div>
+            </div>
+        </div> -->
     </div>
 
     <!-- Back Button -->
@@ -97,7 +110,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, query, where } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -114,60 +127,34 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Cache for storing fetched data
-        const castCache = {
-            actors: [],
-            directors: [],
-            producers: [],
-            writers: []
-        };
+        // Function to show status messages
+        function showStatus(message, isSuccess) {
+            const formStatus = document.getElementById('formStatus');
+            if (!formStatus) {
+                console.error("formStatus element not found");
+                alert(message);
+                return;
+            }
+            formStatus.textContent = message;
+            formStatus.style.color = isSuccess ? "#4CAF50" : "#F44336";
+
+            if (isSuccess) {
+                setTimeout(() => {
+                    formStatus.textContent = "";
+                }, 5000);
+            }
+        }
 
         // Function to load all cast members
         async function loadAllCast() {
             try {
-                await Promise.all([
-                    loadCast('actors', 'actors-container'),
-                    loadCast('directors', 'directors-container'),
-                    loadCast('producers', 'producers-container'),
-                    loadCast('writers', 'writers-container')
-                ]);
-
-                // Show actors section by default
-                showSection('actors');
-            } catch (error) {
-                console.error("Error loading cast:", error);
-                displayErrorMessage(error.message);
-            }
-        }
-
-        // Function to load cast members for a specific category
-        async function loadCast(category, containerId) {
-            try {
-                const container = document.getElementById(containerId);
-
-                // Check cache first
-                if (castCache[category].length > 0) {
-                    displayCast(castCache[category], containerId);
-                    return;
-                }
-
-                console.log(`Fetching cast members for category: ${category}`);
-
-                // Query the cast collection
+                const container = document.getElementById('cast-container');
                 const castRef = collection(db, "cast");
-                const q = query(
-                    castRef,
-                    where("category", "==", category)
-                );
-
-                const querySnapshot = await getDocs(q);
+                const querySnapshot = await getDocs(castRef);
                 const cast = [];
 
                 if (querySnapshot.empty) {
-                    console.log(`No cast members found for category: ${category}`);
-                    const fallbackData = createFallbackCastData(category);
-                    castCache[category] = fallbackData;
-                    displayCast(fallbackData, containerId);
+                    container.innerHTML = '<div class="no-data">No cast members available</div>';
                     return;
                 }
 
@@ -183,63 +170,11 @@
                     });
                 });
 
-                castCache[category] = cast;
-                displayCast(cast, containerId);
-
+                displayCast(cast, 'cast-container');
             } catch (error) {
-                console.error(`Error loading ${category}:`, error);
-                const fallbackData = createFallbackCastData(category);
-                castCache[category] = fallbackData;
-                displayCast(fallbackData, containerId);
+                console.error("Error loading cast:", error);
+                displayErrorMessage(error.message);
             }
-        }
-
-        // Function to create fallback cast data
-        function createFallbackCastData(category) {
-            const fallbackData = {
-                'actors': [
-                    {
-                        id: 'fallback-actor-1',
-                        name: "Sample Actor",
-                        role: "Lead Role",
-                        imageUrl: "/Assests/images/placeholder.jpg",
-                        bio: "A talented actor with years of experience.",
-                        category: "actors"
-                    }
-                ],
-                'directors': [
-                    {
-                        id: 'fallback-director-1',
-                        name: "Sample Director",
-                        role: "Film Director",
-                        imageUrl: "/Assests/images/placeholder.jpg",
-                        bio: "An award-winning director known for their unique style.",
-                        category: "directors"
-                    }
-                ],
-                'producers': [
-                    {
-                        id: 'fallback-producer-1',
-                        name: "Sample Producer",
-                        role: "Executive Producer",
-                        imageUrl: "/Assests/images/placeholder.jpg",
-                        bio: "A successful producer with multiple hit projects.",
-                        category: "producers"
-                    }
-                ],
-                'writers': [
-                    {
-                        id: 'fallback-writer-1',
-                        name: "Sample Writer",
-                        role: "Screenwriter",
-                        imageUrl: "/Assests/images/placeholder.jpg",
-                        bio: "A creative writer with a passion for storytelling.",
-                        category: "writers"
-                    }
-                ]
-            };
-
-            return fallbackData[category] || [];
         }
 
         // Function to display cast members
@@ -266,6 +201,7 @@
                 <img src="${member.imageUrl}" alt="${member.name}" loading="lazy">
                 <h3>${member.name}</h3>
                 <p class="role">${member.role}</p>
+                <p class="category">${member.category.charAt(0).toUpperCase() + member.category.slice(1)}</p>
                 <p class="bio">${member.bio}</p>
             `;
             return card;
@@ -273,35 +209,29 @@
 
         // Function to display error message
         function displayErrorMessage(errorMessage = '') {
-            const containers = [
-                'actors-container', 'directors-container',
-                'producers-container', 'writers-container'
-            ];
-
+            const container = document.getElementById('cast-container');
             const errorHtml = `
                 <div class="error">
                     <p>Error loading cast members. Please try again later.</p>
                     ${errorMessage ? `<p class="error-details">${errorMessage}</p>` : ''}
                 </div>
             `;
-
-            containers.forEach(containerId => {
-                const container = document.getElementById(containerId);
-                container.innerHTML = errorHtml;
-            });
+            container.innerHTML = errorHtml;
         }
 
         // Function to filter cast members
-        window.filterCast = function() {
+        window.filterCast = function () {
             const searchTerm = document.getElementById('search-bar').value.toLowerCase();
             const cards = document.querySelectorAll('.card');
 
             cards.forEach(card => {
                 const name = card.querySelector('h3').textContent.toLowerCase();
                 const role = card.querySelector('.role').textContent.toLowerCase();
+                const category = card.querySelector('.category').textContent.toLowerCase();
                 const bio = card.querySelector('.bio').textContent.toLowerCase();
 
-                if (name.includes(searchTerm) || role.includes(searchTerm) || bio.includes(searchTerm)) {
+                if (name.includes(searchTerm) || role.includes(searchTerm) ||
+                    category.includes(searchTerm) || bio.includes(searchTerm)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
@@ -309,32 +239,48 @@
             });
         };
 
-        // Function to show section
-        window.showSection = function(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.show-section').forEach(section => {
-                section.style.display = 'none';
-            });
-
-            // Show the selected section
-            const selectedSection = document.getElementById(sectionId);
-            if (selectedSection) {
-                selectedSection.style.display = 'block';
-            }
-
-            // Update tab button styles
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
-                if (button.textContent.toLowerCase() === sectionId) {
-                    button.classList.add('active');
-                }
-            });
-        };
-
-        // Load cast when the page loads
+        // Handle form submission
         document.addEventListener('DOMContentLoaded', () => {
-            loadAllCast();
+            const castForm = document.getElementById('castForm');
+            if (castForm) {
+                castForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const submitBtn = document.getElementById('submitBtn');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Submitting...';
+                    }
+
+                    try {
+                        const formData = {
+                            name: document.getElementById('name').value,
+                            category: document.getElementById('category').value,
+                            role: document.getElementById('role').value,
+                            email: document.getElementById('email').value,
+                            phone: document.getElementById('phone').value,
+                            experience: document.getElementById('experience').value,
+                            bio: document.getElementById('bio').value,
+                            portfolio: document.getElementById('portfolio').value,
+                            timestamp: new Date().toISOString()
+                        };
+
+                        await addDoc(collection(db, "cast_applications"), formData);
+                        showStatus("Your application has been submitted successfully! We'll contact you soon.", true);
+                        castForm.reset();
+                    } catch (error) {
+                        console.error("Error submitting application:", error);
+                        showStatus("Error submitting application. Please try again.", false);
+                    } finally {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Submit Application';
+                        }
+                    }
+                });
+            }
         });
     </script>
 </body>
-</html> 
+
+</html>

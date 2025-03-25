@@ -42,7 +42,7 @@
 
 <body>
     <div id="page">
-        <h1>Partner Program</h1>
+        <h1>Partner's Program</h1>
 
         <!-- Image Gallery Section -->
         <section class="gallery-section">
@@ -64,109 +64,136 @@
 
         <!-- Main Content Section -->
         <section class="content-section">
-            <div class="program-overview">
-                <h2>Program Overview</h2>
-                <p class="highlight-text">
-                    The Imaxx TV Producers Partners Programme is designed to foster collaboration between content
-                    creators (filmmakers, producers, and distributors) and the Imaxx TV platform. This program provides
-                    content creators with the opportunity to distribute their content to a wider audience and gain
-                    access to a variety of distribution channels.
-                </p>
+            <!-- Tab Buttons -->
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('overview')">Program Overview</button>
+                <button class="tab-btn" onclick="showTab('guidelines')">Guidelines</button>
+                <button class="tab-btn" onclick="showTab('partner')">Become Partner</button>
+            </div>
 
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Content Distribution</h3>
-                        <p>Showcase your content on Imaxx TV, reaching a global viewership and increasing your
-                            visibility.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Revenue Sharing</h3>
-                        <p>Earn revenue based on views and engagements your content generates on the platform.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Marketing & Promotion</h3>
-                        <p>Access promotional opportunities including social media promotion and featured content slots.
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Program Overview Tab -->
+                <div id="overview" class="tab-pane active">
+                    <div class="program-overview">
+                        <h2>Program Overview</h2>
+                        <p class="highlight-text">
+                            The Imaxx TV Producers Partners Programme is designed to foster collaboration between
+                            content
+                            creators (filmmakers, producers, and distributors) and the Imaxx TV platform. This program
+                            provides
+                            content creators with the opportunity to distribute their content to a wider audience and
+                            gain
+                            access to a variety of distribution channels.
                         </p>
+
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <h3>Content Distribution</h3>
+                                <p>Showcase your content on Imaxx TV, reaching a global viewership and increasing your
+                                    visibility.</p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>Revenue Sharing</h3>
+                                <p>Earn revenue based on views and engagements your content generates on the platform.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>Marketing & Promotion</h3>
+                                <p>Access promotional opportunities including social media promotion and featured
+                                    content slots.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>Analytics Access</h3>
+                                <p>Receive detailed analytics to help refine your strategy and improve engagement.</p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>Collaboration</h3>
+                                <p>Connect with other creators and industry professionals for networking opportunities.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <h3>Analytics Access</h3>
-                        <p>Receive detailed analytics to help refine your strategy and improve engagement.</p>
+                </div>
+
+                <!-- Guidelines Tab -->
+                <div id="guidelines" class="tab-pane">
+                    <div class="guidelines-section">
+                        <h2>Participation Guidelines</h2>
+                        <div class="guidelines-grid">
+                            <div class="guideline-card">
+                                <h3>Content Quality</h3>
+                                <p>Content must meet technical requirements for resolution, sound quality, and
+                                    production
+                                    values.</p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Licensing</h3>
+                                <p>Ensure proper licensing for all content elements including music and third-party
+                                    materials.
+                                </p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Original Content</h3>
+                                <p>Priority given to original content or content offering unique value.</p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Content Categorization</h3>
+                                <p>Proper categorization based on Imaxx TV's genre requirements.</p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Legal Compliance</h3>
+                                <p>All content must adhere to local laws and broadcasting regulations.</p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Timely Submission</h3>
+                                <p>Adhere to Imaxx TV's deadlines for content submission.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <h3>Collaboration</h3>
-                        <p>Connect with other creators and industry professionals for networking opportunities.</p>
+                </div>
+
+                <!-- Partner Form Tab -->
+                <div id="partner" class="tab-pane">
+                    <div class="partner-form-section">
+                        <h2>Become Our Partner</h2>
+                        <form id="partnerForm" class="partner-form">
+                            <div class="form-group">
+                                <input type="text" name="company_name" id="company_name" placeholder="Company Name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="producer_name" id="producer_name" placeholder="Producer Name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" name="phone" id="phone" placeholder="Phone" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="address" id="address" placeholder="Address" required>
+                            </div>
+                            <div class="form-group">
+                                <select name="reason" id="reason" required>
+                                    <option value="">Select a reason</option>
+                                    <option value="help">Pitch us your projects</option>
+                                    <option value="payment">Sell</option>
+                                    <option value="content">Revenue Sharing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="previous_projects" id="previous_projects"
+                                    placeholder="Previous Projects" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" id="submitBtn">Submit Application</button>
+                            <div id="formStatus" class="form-status"></div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-            <div class="guidelines-section">
-                <h2>Participation Guidelines</h2>
-                <div class="guidelines-grid">
-                    <div class="guideline-card">
-                        <h3>Content Quality</h3>
-                        <p>Content must meet technical requirements for resolution, sound quality, and production
-                            values.</p>
-                    </div>
-                    <div class="guideline-card">
-                        <h3>Licensing</h3>
-                        <p>Ensure proper licensing for all content elements including music and third-party materials.
-                        </p>
-                    </div>
-                    <div class="guideline-card">
-                        <h3>Original Content</h3>
-                        <p>Priority given to original content or content offering unique value.</p>
-                    </div>
-                    <div class="guideline-card">
-                        <h3>Content Categorization</h3>
-                        <p>Proper categorization based on Imaxx TV's genre requirements.</p>
-                    </div>
-                    <div class="guideline-card">
-                        <h3>Legal Compliance</h3>
-                        <p>All content must adhere to local laws and broadcasting regulations.</p>
-                    </div>
-                    <div class="guideline-card">
-                        <h3>Timely Submission</h3>
-                        <p>Adhere to Imaxx TV's deadlines for content submission.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Partner Form Section -->
-            <div class="partner-form-section">
-                <h2>Become Our Partner</h2>
-                <form id="partnerForm" class="partner-form">
-                    <div class="form-group">
-                        <input type="text" name="company_name" id="company_name" placeholder="Company Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="producer_name" id="producer_name" placeholder="Producer Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" name="phone" id="phone" placeholder="Phone" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" id="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="address" id="address" placeholder="Address" required>
-                    </div>
-                    <div class="form-group">
-                        <select name="reason" id="reason" required>
-                            <option value="">Select a reason</option>
-                            <option value="help">Pitch us your projects</option>
-                            <option value="payment">Sell</option>
-                            <option value="content">Revenue Sharing</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="previous_projects" id="previous_projects" placeholder="Previous Projects"
-                            rows="4" required></textarea>
-                    </div>
-                    <button type="submit" id="submitBtn">Submit Application</button>
-                    <div id="formStatus" class="form-status"></div>
-                </form>
-            </div>
-
         </section>
     </div>
 
@@ -203,6 +230,25 @@
 
         function goBacks() {
             window.history.back();
+        }
+
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tab panes
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab pane
+            document.getElementById(tabId).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
         }
     </script>
 

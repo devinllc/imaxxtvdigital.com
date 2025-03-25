@@ -21,45 +21,47 @@
 </head>
 
 <body>
+
     <div id="nav">
-        <!-- Hamburger Icon (for mobile view) -->
+        <!-- Hamburger Icon (for tablet view) -->
         <div id="hamburger" onclick="toggleMenu()">
             &#9776;
         </div>
-        <div class="bggg">
+        <div id="close-btn" onclick="toggleMenu()">
+            &times;
+        </div>
+        <div class="bggg" id="menu">
             <div id="imgss">
-                <a href="#"> <img id="" src="Assests/photo_2025-02-14_15.14.43-removebg-preview.png" alt="logo"> </img>
+                <a href="#">
+                    <img id="" src="/Assests/photo_2025-02-14_15.14.43-removebg-preview.png" alt="logo">
                 </a>
-
             </div>
-            <a id="homess" href="#">
-                <h4>HOME</h4>
+            <a id="homess" class="nav-item" href="#">
+                <h4>Home</h4>
             </a>
-            <a href="pages/about/about.html">
-                <h4>ABOUT US</h4>
+            <a href="pages/about/about.html" class="nav-item">
+                <h4>About Us</h4>
             </a>
-            <a href="/pages/webfilms/index.html">
-                <h4>MEDIA CENTER</h4>
+            <a href="/pages/webfilms/index.html" class="nav-item">
+                <h4>Media Center</h4>
             </a>
-            <a id="toggleButton" href="pages/events_blogs/events.html">
-                <h4>EVENTS & BLOGS</h4>
+            <a id="toggleButton" href="pages/events_blogs/events.html" class="nav-item">
+                <h4>Events & Blogs</h4>
             </a>
-            <a href="reality_show.html">
-                <h4>CONTEST</h4>
+            <a href="reality_show.html" class="nav-item">
+                <h4>Contest</h4>
             </a>
-            <a href="/pages/programs/index.html">
-                <h4>PARTNER'S PROGRAM</h4>
+            <a href="/pages/programs/index.html" class="nav-item">
+                <h4>Partner's Program</h4>
             </a>
-            <a href="/pages/cast/index.html">
-                <h4>CAST</h4>
+            <a href="/pages/cast/index.html" class="nav-item">
+                <h4>Casting</h4>
             </a>
-            <a href="/pages/contacts/index.html">
-                <h4>CONTACT US</h4>
+            <a href="/pages/contacts/index.html" class="nav-item">
+                <h4>Contact Us</h4>
             </a>
-
         </div>
     </div>
-
 
     <!-- <div id="cursor"></div>
     <div id="cursor-blur"></div> -->
@@ -92,19 +94,14 @@
                                         Stop Scrolling Start Watching.
                                     </p>
                                     <br>
-                                    <!-- <p>Sidcup Family Golf is a multipurpose golf facility located in Sidcup,
-                                        South East London. Passionate about technology, player development and
-                                        making golf fun and accessible to everyone.
-                                    </p> -->
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
                 <div class="footer-message" id="buttionss"
-                    style="position: absolute; left: 50%; bottom: 10%; transform: translateX(-50%);">
+                    style="align-items: center; justify-content: center; margin-top: -50px;">
                     <form id="phoneForm" class="footer-message">
                         <input type="number" maxlength="10" id="phoneNumber" name="phoneNumber"
                             placeholder="Enter your Number" required style="color: white;">
@@ -657,7 +654,30 @@
 
         </a>
     </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const hamburger = document.getElementById('hamburger');
+            const closeBtn = document.getElementById('close-btn');
 
+            menu.classList.toggle('show');
+            if (menu.classList.contains('show')) {
+                hamburger.style.display = 'none';
+                closeBtn.style.display = 'block';
+            } else {
+                hamburger.style.display = 'block';
+                closeBtn.style.display = 'none';
+            }
+        }
+
+        // Highlight selected menu item
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function () {
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
     <!-- Script to ensure back buttons on all footer links -->
     <script>
         // Add back button to all footer links on click
