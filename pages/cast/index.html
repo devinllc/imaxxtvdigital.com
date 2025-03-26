@@ -53,40 +53,87 @@
 
         <!-- Cast Form Section -->
         <div class="cast-form-section">
-            <h2>Casting Application Form</h2>
+            <h2>Application Form</h2>
             <form id="castForm" class="cast-form">
+                <h3>Personal Information</h3>
+                <br>
                 <div class="form-group">
                     <input type="text" name="name" id="name" placeholder="Full Name" required>
                 </div>
                 <div class="form-group">
-                    <select name="category" id="category" required>
-                        <option value="">Select Your Role</option>
-                        <option value="actors">Actor</option>
-                        <option value="directors">Director</option>
-                        <option value="producers">Producer</option>
-                        <option value="writers">Writer</option>
-                    </select>
+                    <input type="text" name="nickname" id="nickname" placeholder="Nickname">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="role" id="role" placeholder="Specific Role/Position" required>
+                    <input type="text" name="location" id="location" placeholder="Current Location" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" name="dob" id="dob" placeholder="Date of Birth" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="height" id="height" placeholder="Height (in inches)" required>
                 </div>
                 <div class="form-group">
                     <input type="email" name="email" id="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
+                    <input type="number" name="age" id="age" placeholder="Age" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="screenAge" id="screenAge" placeholder="Screen Age">
+                </div>
+                <div class="form-group">
+                    <select name="gender" id="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="vitalStats" id="vitalStats" placeholder="Vital Stats (e.g., 36-24-36)">
+                </div>
+                <div class="form-group">
+                    <select name="maritalStatus" id="maritalStatus" required>
+                        <option value="">Select Marital Status</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <input type="tel" name="phone" id="phone" placeholder="Phone Number" required>
                 </div>
+
+                <h3>Address Information</h3>
+                <br>
+                <div class="form-group">
+                    <textarea name="permanentAddress" id="permanentAddress" placeholder="Permanent Address" rows="3"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="city" id="city" placeholder="City" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="parentStatus" id="parentStatus" placeholder="Parent Status" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="zipCode" id="zipCode" placeholder="ZIP Code" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="studentTrustee" id="studentTrustee" placeholder="Student Trustee">
+                </div>
+
+                <h3>Professional Information</h3>
+                <br>
                 <div class="form-group">
                     <input type="text" name="experience" id="experience" placeholder="Years of Experience" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="bio" id="bio" placeholder="Tell us about yourself and your experience" rows="4"
+                    <textarea name="languages" id="languages" placeholder="Languages Known" rows="2"
                         required></textarea>
                 </div>
-                <div class="form-group">
-                    <textarea name="portfolio" id="portfolio" placeholder="List your previous work/projects" rows="4"
-                        required></textarea>
-                </div>
+
                 <button type="submit" id="submitBtn">Submit Application</button>
                 <div id="formStatus" class="form-status"></div>
             </form>
@@ -255,13 +302,24 @@
                     try {
                         const formData = {
                             name: document.getElementById('name').value,
-                            category: document.getElementById('category').value,
-                            role: document.getElementById('role').value,
+                            nickname: document.getElementById('nickname').value,
+                            location: document.getElementById('location').value,
+                            dob: document.getElementById('dob').value,
+                            height: document.getElementById('height').value,
                             email: document.getElementById('email').value,
+                            age: document.getElementById('age').value,
+                            screenAge: document.getElementById('screenAge').value,
+                            gender: document.getElementById('gender').value,
+                            vitalStats: document.getElementById('vitalStats').value,
+                            maritalStatus: document.getElementById('maritalStatus').value,
                             phone: document.getElementById('phone').value,
+                            permanentAddress: document.getElementById('permanentAddress').value,
+                            city: document.getElementById('city').value,
+                            parentStatus: document.getElementById('parentStatus').value,
+                            zipCode: document.getElementById('zipCode').value,
+                            studentTrustee: document.getElementById('studentTrustee').value,
                             experience: document.getElementById('experience').value,
-                            bio: document.getElementById('bio').value,
-                            portfolio: document.getElementById('portfolio').value,
+                            languages: document.getElementById('languages').value,
                             timestamp: new Date().toISOString()
                         };
 

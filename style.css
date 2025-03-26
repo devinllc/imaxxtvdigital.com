@@ -23,7 +23,7 @@ h5,
 h6,
 a {
     font-family: 'Montserrat', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     color: white;
 }
 
@@ -106,6 +106,7 @@ select:focus {
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     color: white;
+    font-weight: bold;
     padding: 8px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
@@ -192,6 +193,7 @@ select:focus {
         display: block;
         padding: 12px 20px;
         width: 100%;
+        font-weight: bold;
         text-align: center;
         border-bottom: 1px solid rgba(209, 178, 97, 0.2);
         font-size: 18px;
