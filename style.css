@@ -166,6 +166,7 @@ select:focus {
 
     #menu.show {
         display: flex;
+        gap: 5px;
     }
 
     #hamburger {
@@ -227,6 +228,7 @@ select:focus {
 
     #menu.show {
         display: flex;
+        gap: 5px;
     }
 
     #hamburger {
@@ -245,7 +247,7 @@ select:focus {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: 15px;
+        top: -40px;
     }
 
     #imgss img {
@@ -313,7 +315,7 @@ select:focus {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-top: 70px;
+        padding-top: 50px;
         z-index: 999;
     }
 
@@ -337,7 +339,7 @@ select:focus {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: 15px;
+        top: -40px;
     }
 
     #imgss img {
@@ -389,8 +391,8 @@ select:focus {
 
 /* Fix message button positioning */
 .message-btn {
-    position: relative;
-    right: 60px;
+    position: absolute;
+    right: 0;
     background-color: #D1B261;
     color: white;
     border: none;
@@ -404,21 +406,6 @@ select:focus {
     z-index: 90000;
 }
 
-@media (max-width: 768px) {
-    .message-btn {
-        position: relative;
-        right: 0;
-        margin-top: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .message-btn {
-        position: relative;
-        right: 0;
-        margin-top: 10px;
-    }
-}
 
 /* Logo size adjustments */
 #imgss img {
@@ -1114,6 +1101,7 @@ select:focus {
     }
 
     .footer-message {
+        display: none;
         margin-top: 15px;
     }
 
@@ -1167,6 +1155,7 @@ select:focus {
     }
 
     .footer-message {
+        display: none;
         margin-left: -10px;
     }
 
@@ -1222,6 +1211,10 @@ select:focus {
     .footer-message input {
         width: 220px;
 
+    }
+
+    .footer-message {
+        display: none;
     }
 
 
