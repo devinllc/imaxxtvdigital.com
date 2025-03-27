@@ -387,13 +387,14 @@ body {
     padding: 30px;
     border-radius: 12px;
     border: 1px solid #D1B261;
-    max-width: 600px;
+    max-width: 420px;
     width: 90%;
     position: relative;
 }
 
 .popup-content img {
-    width: 100%;
+    width: 350px;
+    height: 380px;
     border-radius: 8px;
     margin-bottom: 20px;
 }
