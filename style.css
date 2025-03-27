@@ -427,7 +427,7 @@ select:focus {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: -100px;
+        top: -40px;
     }
 }
 
@@ -586,6 +586,7 @@ select:focus {
 .message-btn:hover {
     background-color: #D1B261;
 }
+
 @media (max-width: 1024px) {
     #nav {
         justify-content: space-around;
@@ -782,10 +783,12 @@ select:focus {
         display: block;
         z-index: 1000;
     }
-    .moreeee{
+
+    .moreeee {
         margin-top: 30px;
     }
 }
+
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     #nav {
