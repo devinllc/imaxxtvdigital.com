@@ -654,17 +654,17 @@ select:focus {
     }
 
     #page h1 {
-        font-size: 200px;
+        font-size: 80px;
         margin-bottom: 15px;
     }
 
     #page h2 {
-        font-size: 34px;
+        font-size: 28px;
         margin-bottom: 10px;
     }
 
     #page p {
-        font-size: 28px;
+        font-size: 22px;
     }
 
     .footer-message {
@@ -741,39 +741,39 @@ select:focus {
     /* Adjust carousel height */
     .carousel {
         background-color: #000;
-        height: auto;
-
+        height: 90vh;
     }
 
     #imagsssss {
-        width: 220px;
+        width: 180px;
         height: auto;
         display: flex;
         text-align: center;
         z-index: 999;
         opacity: 1;
-        margin-left: 180px;
-        margin-top: -250px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        margin-top: -200px;
     }
 
     .carousel-image img {
-        height: 100vh;
-        width: 100vw;
+        height: 90vh;
+        width: 100%;
         overflow: hidden;
         object-fit: cover;
     }
 
     #page h1 {
-        font-size: 90px;
+        font-size: 50px;
     }
 
     #page p {
-        font-size: 1.2rem;
+        font-size: 18px;
     }
 
     .message-btn {
-        position: fixed;
-        margin-right: 130px;
+        position: relative;
+        margin-right: 0;
         padding: 10px;
         font-size: 16px;
     }
@@ -857,13 +857,13 @@ select:focus {
     }
 
     #page h1 {
-        font-size: 40px;
-        margin-bottom: 15px;
+        font-size: 50px;
+        margin-bottom: 10px;
     }
 
     #page h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
+        font-size: 22px;
+        margin-bottom: 8px;
     }
 
     #page p {
@@ -883,8 +883,9 @@ select:focus {
 
     .message-btn {
         position: relative;
-        right: 0;
-        margin-top: 10px;
+        margin-right: 0;
+        padding: 10px;
+        font-size: 16px;
     }
 
     /* Fix for input field alignment */
@@ -944,24 +945,24 @@ select:focus {
     /* Adjust carousel height */
     .carousel {
         background-color: #000;
-        height: auto;
-
+        height: 90vh;
     }
 
     #imagsssss {
-        width: 220px;
+        width: 180px;
         height: auto;
         display: flex;
         text-align: center;
         z-index: 999;
         opacity: 1;
-        margin-left: 180px;
-        margin-top: -250px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        margin-top: -200px;
     }
 
     .carousel-image img {
-        height: 100vh;
-        width: 100vw;
+        height: 90vh;
+        width: 100%;
         overflow: hidden;
         object-fit: cover;
     }
@@ -971,12 +972,12 @@ select:focus {
     }
 
     #page p {
-        font-size: 1rem;
+        font-size: 18px;
     }
 
     .message-btn {
-        position: fixed;
-        margin-right: 130px;
+        position: relative;
+        margin-right: 0;
         padding: 10px;
         font-size: 16px;
     }
@@ -1012,15 +1013,17 @@ select:focus {
     }
 
     #page h1 {
-        font-size: 32px;
+        font-size: 36px;
+        text-shadow: 1px 1px 4px #D1B261;
     }
 
     #page h2 {
-        font-size: 20px;
+        font-size: 18px;
+        margin-bottom: 6px;
     }
 
     #page p {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .about-section {
@@ -1033,7 +1036,8 @@ select:focus {
     }
 
     .footer-message input {
-        max-width: 250px;
+        max-width: 220px;
+        height: 40px;
     }
 
     #buttionss {
@@ -1050,14 +1054,8 @@ select:focus {
     }
 
     #imagsssss {
-        width: 220px;
-        height: auto;
-        display: flex;
-        align-items: center;
-        z-index: 999;
-        opacity: 1;
-        margin-left: 80px;
-        margin-top: -250px;
+        width: 140px;
+        margin-top: -150px;
     }
 
     /* #imgss {
@@ -1093,12 +1091,11 @@ select:focus {
 
     .carousel {
         background-color: #000;
-        height: 100vh;
-        /* height: 14vh; */
+        height: 80vh;
     }
 
     .carousel-image img {
-        height: 100vh;
+        height: 80vh;
         width: 100%;
     }
 
@@ -1117,8 +1114,8 @@ select:focus {
     .message-btn {
         position: absolute;
         margin-right: -50px;
-        padding: 10px;
-        font-size: 16px;
+        padding: 8px;
+        font-size: 14px;
     }
 }
 
@@ -1390,7 +1387,6 @@ select:focus {
     .footer-right h1 {
         font-size: 20px;
     }
-
 }
 
 @media (max-width: 480px) {
@@ -1591,134 +1587,198 @@ select:focus {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    #more--wrapper {
+        padding: 15px;
+    }
+
+    #more--title {
+        font-size: 30px;
+        padding-bottom: 15px;
+    }
+
+    #more--cards-container {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .more--card {
+        width: 240px;
+        height: 280px;
+        padding: 15px;
+    }
+
+    .more--card-title {
+        font-size: 1.3rem;
+    }
+
+    .more--card-description {
+        font-size: 0.9rem;
+    }
+
+    .more--card-icon img {
+        height: 70px;
+        width: 70px;
+    }
+}
 
 /* For screens less than 768px (tablets, phones) */
 @media (max-width: 768px) {
     #more--cards-container {
         justify-content: center;
+        gap: 15px;
     }
 
     .more--card {
         width: 90%;
-        height: 230px;
+        height: 200px;
         margin: 10px auto;
+        padding: 15px;
+    }
+
+    .more--card-title {
+        font-size: 1.2rem;
+        text-shadow: 1px 1px 4px #D1B261;
+    }
+
+    .more--card-description {
+        font-size: 0.85rem;
+        margin: 10px 0;
+        text-shadow: 1px 1px 4px #D1B261;
+    }
+
+    .more--card-icon img {
+        height: 60px;
+        width: 60px;
+        bottom: 15px;
+        right: 15px;
     }
 }
 
-/* For screens less than 768px (tablets, phones) */
+/* For screens less than 480px (phones) */
 @media (max-width: 480px) {
-    #more--cards-container {
-        justify-content: center;
+    #more--title {
+        font-size: 24px;
+        padding-bottom: 10px;
     }
 
     .more--card {
-        width: 90%;
-        height: 230px;
-        margin: 10px auto;
+        height: 180px;
+        padding: 12px;
+    }
+
+    .more--card-title {
+        font-size: 1.1rem;
+    }
+
+    .more--card-description {
+        font-size: 0.8rem;
+        margin: 8px 0;
+    }
+
+    .more--card-icon img {
+        height: 50px;
+        width: 50px;
+        bottom: 12px;
+        right: 12px;
     }
 }
 
+/* FAQ Section Responsive Styles */
+@media (max-width: 1024px) {
+    .faq-container {
+        max-width: 90%;
+        margin: 40px auto;
+    }
 
-/* faqssss */
-/* Centering FAQ Container */
+    .faq-container h1 {
+        font-size: 28px;
+    }
 
+    .faq-header {
+        font-size: 18px;
+    }
 
-.faq-container {
-    max-width: 1200px;
-    height: 100%;
-    margin: 50px auto;
-    text-align: center;
+    .faq-answer {
+        font-size: 18px;
+    }
 }
 
-/* FAQ Title */
-.faq-container h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 34px;
-    color: #ffffff;
-    margin-bottom: 20px;
-    font-weight: bold;
+@media (max-width: 768px) {
+    .faq-container {
+        margin: 30px auto;
+    }
+
+    .faq-container h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .faq-card {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .faq-header {
+        font-size: 16px;
+        text-shadow: 1px 1px 4px #D1B261;
+    }
+
+    .faq-answer {
+        font-size: 16px;
+        line-height: 1.6;
+        text-shadow: 1px 1px 4px #D1B261;
+    }
+
+    .toggle-btn,
+    .close-btn {
+        font-size: 18px;
+    }
 }
 
-/* FAQ Card */
-/* FAQ Card */
-.faq-card {
-    background: rgba(0, 0, 0);
-    border-radius: 12px;
-    box-shadow: 0px 4px 8px #D1B261;
-    transition: all 0.3s ease-in-out;
-    margin: 10px auto;
-    padding: 15px;
-    /* max-width: 1000px; */
-    margin-bottom: 20px;
-    /* Added space between FAQ cards */
+@media (max-width: 480px) {
+    .faq-container {
+        max-width: 95%;
+        margin: 25px auto;
+    }
+
+    .faq-container h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .faq-card {
+        padding: 8px;
+        margin-bottom: 10px;
+        box-shadow: 0px 3px 6px #D1B261;
+    }
+
+    .faq-header {
+        font-size: 12px;
+        white-space: normal;
+        text-shadow: 1px 1px 3px #D1B261;
+        word-break: normal;
+        line-height: 1.3;
+    }
+
+    .faq-answer {
+        font-size: 12px;
+        line-height: 1.4;
+        word-spacing: normal;
+        text-shadow: 1px 1px 3px #D1B261;
+        word-break: normal;
+    }
+
+    .toggle-btn,
+    .close-btn {
+        font-size: 14px;
+        padding: 4px;
+    }
+
+    .close-btn {
+        margin-top: 8px;
+    }
 }
-
-/* Question and Button */
-.faq-header {
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-transform: capitalize;
-    text-shadow: 2px 2px 8px #D1B261;
-    font-size: 22px;
-    font-weight: bold;
-    /* padding: 10px; */
-}
-
-/* Toggle Button */
-.toggle-btn,
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #D1B261;
-    transition: 0.3s;
-}
-
-.toggle-btn:hover,
-.close-btn:hover {
-    color: #D1B261;
-}
-
-/* Answer Section (Hidden by Default) */
-.faq-answer {
-    font-size: 22px;
-    /* font-family: 'Montserrat', sans-serif; */
-    text-transform: capitalize;
-    word-spacing: 2px;
-    text-shadow: 2px 2px 8px #D1B261;
-    display: none;
-    /* padding: 15px; */
-    line-height: 1.8;
-    text-align: left;
-
-    /* font-weight: bold; */
-    margin-top: 10px;
-}
-
-/* Expanded Card */
-.faq-card.active {
-    background: rgba(0, 0, 0, 0.9);
-    /* box-shadow: 0px 8px 20px rgba(255, 215, 0, 0.5); */
-}
-
-/* Show Answer when Expanded */
-.faq-card.active .faq-answer {
-    display: block;
-}
-
-/* Close Button */
-.close-btn {
-    display: block;
-    margin-top: 10px;
-    font-size: 16px;
-    text-align: right;
-}
-
-
-
 
 /* Availability Section */
 #availability {
@@ -1740,7 +1800,6 @@ select:focus {
     display: flex;
     justify-content: center;
     gap: 30px;
-
 }
 
 /* Individual Platform Card */
@@ -1777,30 +1836,83 @@ select:focus {
     font-weight: bold;
 }
 
+/* Availability Section Responsive Styles */
+@media (max-width: 1024px) {
+    #availability h2 {
+        margin-top: 30px;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .platforms {
+        gap: 20px;
+    }
+
+    .platform {
+        width: 110px;
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+
+    .platform i {
+        font-size: 2.2rem;
+    }
+
+    .platform span {
+        font-size: 16px;
+    }
+}
+
 /* For screens less than 768px (tablets, phones) */
 @media (max-width: 768px) {
+    #availability h2 {
+        margin-top: 25px;
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
     .platforms {
         flex-direction: column;
         align-items: center;
         gap: 10px;
-
     }
-}
 
-
-
-@media (max-width: 768px) {
-    .bggg img {
+    .platform {
         width: 100px;
-        z-index: 10000;
+        padding: 12px;
+        margin-bottom: 15px;
+        margin-top: 5px;
+    }
+
+    .platform i {
+        font-size: 2rem;
+    }
+
+    .platform span {
+        font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
-    .bggg img {
-        width: 80px;
-        object-fit: contain;
-        z-index: 10000;
+    #availability h2 {
+        margin-top: 20px;
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .platform {
+        width: 90px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .platform i {
+        font-size: 1.8rem;
+        margin-bottom: 3px;
+    }
+
+    .platform span {
+        font-size: 12px;
     }
 }
 
@@ -2159,5 +2271,114 @@ select:focus {
         width: 40px;
         height: 40px;
         font-size: 16px;
+    }
+}
+
+/* faqssss */
+/* Centering FAQ Container */
+.faq-container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+/* FAQ Title */
+.faq-container h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* FAQ Card */
+.faq-card {
+    background: rgba(0, 0, 0);
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px #D1B261;
+    transition: all 0.3s ease-in-out;
+    margin: 10px auto;
+    padding: 15px;
+    /* max-width: 1000px; */
+    margin-bottom: 20px;
+    /* Added space between FAQ cards */
+}
+
+/* Question and Button */
+.faq-header {
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+    text-shadow: 2px 2px 8px #D1B261;
+    font-size: 20px;
+    font-weight: bold;
+    /* padding: 10px; */
+}
+
+/* Toggle Button */
+.toggle-btn,
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #D1B261;
+    transition: 0.3s;
+}
+
+.toggle-btn:hover,
+.close-btn:hover {
+    color: #D1B261;
+}
+
+/* Answer Section (Hidden by Default) */
+.faq-answer {
+    font-size: 22px;
+    /* font-family: 'Montserrat', sans-serif; */
+    text-transform: capitalize;
+    word-spacing: 2px;
+    text-shadow: 2px 2px 8px #D1B261;
+    display: none;
+    /* padding: 15px; */
+    line-height: 1.8;
+    text-align: left;
+    /* font-weight: bold; */
+    margin-top: 10px;
+}
+
+/* Expanded Card */
+.faq-card.active {
+    background: rgba(0, 0, 0, 0.9);
+    /* box-shadow: 0px 8px 20px rgba(255, 215, 0, 0.5); */
+}
+
+/* Show Answer when Expanded */
+.faq-card.active .faq-answer {
+    display: block;
+}
+
+/* Close Button */
+.close-btn {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .bggg img {
+        width: 100px;
+        z-index: 10000;
+    }
+}
+
+@media (max-width: 480px) {
+    .bggg img {
+        width: 80px;
+        object-fit: contain;
+        z-index: 10000;
     }
 }
