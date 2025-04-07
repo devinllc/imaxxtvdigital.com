@@ -276,16 +276,6 @@ select:focus {
         margin-top: 0;
     }
 
-    .bggg {
-        margin: 0;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.95);
-        padding: 20px 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
     /* Remove any display: none from nav items */
     #nav a {
         display: block !important;
@@ -366,16 +356,6 @@ select:focus {
 
     #homess {
         margin-top: 0;
-    }
-
-    .bggg {
-        margin: 0;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.95);
-        padding: 20px 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
 
     /* Remove any display: none from nav items */
@@ -541,19 +521,18 @@ select:focus {
     display: flex;
     align-items: center;
     position: relative;
+    width: 300px;
+    margin: 0 auto;
 }
 
 .footer-message input {
     padding: 15px;
     height: 50px;
     color: black;
-    /* Increased height for better visibility */
     border-radius: 25px;
     border: 2px solid #ddd;
     width: 300px;
-    /* Adjusted width for better layout */
     padding-left: 30px;
-    /* margin-left: 50px; */
 }
 
 .zindexxxx {
@@ -561,8 +540,8 @@ select:focus {
 }
 
 .message-btn {
-    position: relative;
-    right: 60px;
+    position: absolute;
+    right: 10px;
     background-color: #D1B261;
     color: white;
     border: none;
@@ -573,7 +552,6 @@ select:focus {
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    z-index: 90000;
     /* Slightly larger icon */
 }
 
@@ -651,37 +629,53 @@ select:focus {
     #page {
         top: 20%;
         padding: 0 20px;
+        margin: 0 auto;
+        max-width: 100%;
+        text-align: center;
     }
 
     #page h1 {
         font-size: 80px;
         margin-bottom: 15px;
+        text-align: center;
     }
 
     #page h2 {
         font-size: 28px;
         margin-bottom: 10px;
+        text-align: center;
     }
 
     #page p {
         font-size: 22px;
+        text-align: center;
     }
 
     .footer-message {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+        margin-top: 20px;
     }
 
     .footer-message input {
-        width: 100%;
+        width: 80%;
         max-width: 300px;
-        margin: 0 auto;
+        margin: 0;
     }
 
     .message-btn {
+        position: absolute;
+        right: 10%;
+        margin-top: 0;
+        z-index: 10;
+    }
+
+    #buttionss {
         position: relative;
-        right: 0;
-        margin-top: 10px;
+        width: 100%;
+        margin-top: -30px;
     }
 
     /* Fix for input field alignment */
@@ -852,40 +846,39 @@ select:focus {
 
     /* Root Index Page Tab View */
     #page {
-        top: 20%;
-        padding: 0 20px;
+        top: 15%;
     }
 
     #page h1 {
-        font-size: 50px;
-        margin-bottom: 10px;
+        font-size: 60px;
+        text-align: center;
     }
 
     #page h2 {
-        font-size: 22px;
-        margin-bottom: 8px;
+        font-size: 24px;
+        text-align: center;
     }
 
     #page p {
-        font-size: 18px;
+        font-size: 20px;
+        text-align: center;
     }
 
     .footer-message {
-        flex-direction: column;
-        gap: 15px;
+        width: 100%;
     }
 
     .footer-message input {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
+        width: 80%;
+        max-width: 280px;
     }
 
     .message-btn {
-        position: relative;
-        margin-right: 0;
-        padding: 10px;
-        font-size: 16px;
+        right: 15%;
+    }
+
+    #buttionss {
+        margin-top: -20px;
     }
 
     /* Fix for input field alignment */
@@ -1013,17 +1006,18 @@ select:focus {
     }
 
     #page h1 {
-        font-size: 36px;
-        text-shadow: 1px 1px 4px #D1B261;
+        font-size: 40px;
+        text-align: center;
     }
 
     #page h2 {
-        font-size: 18px;
-        margin-bottom: 6px;
+        font-size: 20px;
+        text-align: center;
     }
 
     #page p {
-        font-size: 14px;
+        font-size: 18px;
+        text-align: center;
     }
 
     .about-section {
@@ -1294,7 +1288,8 @@ select:focus {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        /* Ensures text is centered */
+        gap: 30px;
+        padding: 20px 0;
     }
 
     .footer-below img {
@@ -1313,21 +1308,44 @@ select:focus {
     }
 
     .footer-left img {
-        width: 120px;
+        width: 200px;
+        height: auto;
+        margin: 0 auto 10px;
         display: block;
-        margin: 0 auto;
-        /* Center image */
+    }
+
+    .footer-left p {
+        margin: 10px 0;
+        text-align: center;
     }
 
     .footer-right {
+        order: 1;
         text-align: center;
-        /* Center the text */
         align-items: center;
-        /* Align the content in the center */
+        width: 100%;
     }
 
     .footer-right h1 {
-        font-size: 20px;
+        font-size: 22px;
+    }
+
+    .footer-messages {
+        margin: 0 auto;
+        justify-content: center;
+        width: 100%;
+        max-width: 350px;
+        position: relative;
+    }
+
+    #availability {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .platforms {
+        justify-content: center;
     }
 }
 
@@ -1367,10 +1385,7 @@ select:focus {
     }
 
     .footer-left img {
-        width: 300px;
-        /* display: block;
-        margin: 0 auto; */
-        /* Center image */
+        width: 180px;
     }
 
     .footer-left p {
@@ -1386,6 +1401,19 @@ select:focus {
 
     .footer-right h1 {
         font-size: 20px;
+    }
+
+    .footer-messages {
+        max-width: 320px;
+    }
+
+    #availability h2 {
+        font-size: 22px;
+    }
+
+    .platform {
+        width: 100px;
+        margin: 5px;
     }
 }
 
@@ -1433,7 +1461,7 @@ select:focus {
     }
 
     .footer-left img {
-        width: 220px;
+        width: 150px;
         display: block;
         margin: 0 auto;
         /* Center image */
@@ -2450,5 +2478,121 @@ select:focus {
         width: 80px;
         object-fit: contain;
         z-index: 10000;
+    }
+}
+
+/* Fix for screen sizes between 768px and 1024px */
+@media (min-width: 769px) and (max-width: 1023px) {
+
+    /* Navigation fixes */
+    #nav {
+        height: 90px;
+        justify-content: center;
+        padding: 0 20px;
+    }
+
+    #hamburger {
+        display: block !important;
+        left: 20px;
+    }
+
+    #close-btn.show {
+        display: block;
+        right: 20px;
+    }
+
+    #menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 80px;
+        z-index: 999;
+    }
+
+    #menu.show {
+        display: flex;
+        gap: 20px;
+    }
+
+    #imgss {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -50px;
+    }
+
+    #imgss img {
+        width: 160px;
+    }
+
+    #nav a {
+        display: block !important;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(209, 178, 97, 0.2);
+        font-size: 16px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #homess {
+        margin-top: 0;
+    }
+
+    /* Ensure all menu items are displayed */
+    #menu a {
+        opacity: 1;
+        visibility: visible;
+        display: block;
+    }
+
+    #menu.show a {
+        display: block !important;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Footer list item fixes */
+    .footer-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-item {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-below {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* Additional fix for all screen sizes */
+@media (max-width: 1024px) {
+    #menu.show a {
+        display: block !important;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #menu a {
+        display: block;
+    }
+
+    #menu.show {
+        display: flex;
+        gap: 15px;
     }
 }

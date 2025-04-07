@@ -671,9 +671,16 @@
             const closeBtn = document.getElementById('close-btn');
 
             menu.classList.toggle('show');
+
             if (menu.classList.contains('show')) {
                 hamburger.style.display = 'none';
                 closeBtn.style.display = 'block';
+                // Ensure all menu items are displayed when menu is shown
+                document.querySelectorAll('#menu a').forEach(item => {
+                    item.style.display = 'block';
+                    item.style.opacity = '1';
+                    item.style.visibility = 'visible';
+                });
             } else {
                 hamburger.style.display = 'block';
                 closeBtn.style.display = 'none';
@@ -685,6 +692,11 @@
             item.addEventListener('click', function () {
                 document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
                 this.classList.add('active');
+
+                // Close menu when an item is clicked (on mobile)
+                if (window.innerWidth <= 1024) {
+                    toggleMenu();
+                }
             });
         });
     </script>

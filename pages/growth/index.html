@@ -232,11 +232,7 @@
                     },
                     plugins: {
                         legend: {
-                            labels: {
-                                color: '#ffffff',
-                                boxWidth: 15,
-                                padding: 10
-                            }
+                            display: false
                         }
                     }
                 }
@@ -283,54 +279,64 @@
                     },
                     plugins: {
                         legend: {
-                            labels: {
-                                color: '#ffffff',
-                                boxWidth: 15,
-                                padding: 10
-                            }
+                            display: false
                         }
                     }
                 }
             });
 
             // Content Distribution Pie Chart
-            const contentPieCtx = document.getElementById('contentPieChart').getContext('2d');
-            const contentPieChart = new Chart(contentPieCtx, {
+            const contentCtx = document.getElementById('contentPieChart').getContext('2d');
+            const contentData = {
+                labels: ['Movies', 'Series', 'Reality Shows', 'Documentaries', 'Kids Content'],
+                datasets: [{
+                    data: [40, 25, 15, 12, 8],
+                    backgroundColor: [
+                        '#D1B261',
+                        '#D4BE7C',
+                        '#D8CA98',
+                        '#DBD6B3',
+                        '#DFE2CF'
+                    ],
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            };
+            const contentPieChart = new Chart(contentCtx, {
                 type: 'pie',
-                data: {
-                    labels: ['Movies', 'Series', 'Reality Shows', 'Documentaries', 'Kids Content'],
-                    datasets: [{
-                        data: [40, 25, 15, 12, 8],
-                        backgroundColor: [
-                            '#D1B261',
-                            '#D4BE7C',
-                            '#D8CA98',
-                            '#DBD6B3',
-                            '#DFE2CF'
-                        ],
-                        borderColor: '#000000',
-                        borderWidth: 1
-                    }]
-                },
+                data: contentData,
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            top: 0,
+                            right: 0,
+                            bottom: 20,
+                            left: 0
+                        }
+                    },
                     plugins: {
                         legend: {
-                            position: 'right',
+                            position: 'top',
+                            align: 'center',
                             labels: {
                                 color: '#ffffff',
                                 font: {
-                                    size: 12
+                                    size: 10
                                 },
-                                padding: 10,
-                                boxWidth: 12
+                                boxWidth: 8,
+                                padding: 2
                             }
                         },
                         tooltip: {
                             callbacks: {
                                 label: function (context) {
-                                    return `${context.label}: ${context.raw}%`;
+                                    let label = context.label || '';
+                                    let value = context.raw || 0;
+                                    let total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    let percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${percentage}%`;
                                 }
                             }
                         }
@@ -339,42 +345,56 @@
             });
 
             // Subscriber Categories Pie Chart
-            const subscriberPieCtx = document.getElementById('subscriberPieChart').getContext('2d');
-            const subscriberPieChart = new Chart(subscriberPieCtx, {
+            const subscribersCtx = document.getElementById('subscriberPieChart').getContext('2d');
+            const subscribersData = {
+                labels: ['Basic Plan', 'Standard Plan', 'Premium Plan', 'Free Tier'],
+                datasets: [{
+                    data: [45, 30, 15, 10],
+                    backgroundColor: [
+                        '#D1B261',
+                        '#A68D4E',
+                        '#7C693A',
+                        '#524627'
+                    ],
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            };
+            const subscriberPieChart = new Chart(subscribersCtx, {
                 type: 'pie',
-                data: {
-                    labels: ['Basic Plan', 'Standard Plan', 'Premium Plan', 'Free Tier'],
-                    datasets: [{
-                        data: [45, 30, 15, 10],
-                        backgroundColor: [
-                            '#D1B261',
-                            '#A68D4E',
-                            '#7C693A',
-                            '#524627'
-                        ],
-                        borderColor: '#000000',
-                        borderWidth: 1
-                    }]
-                },
+                data: subscribersData,
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            top: 0,
+                            right: 0,
+                            bottom: 20,
+                            left: 0
+                        }
+                    },
                     plugins: {
                         legend: {
-                            position: 'right',
+                            position: 'top',
+                            align: 'center',
                             labels: {
                                 color: '#ffffff',
                                 font: {
-                                    size: 12
+                                    size: 10
                                 },
-                                padding: 10,
-                                boxWidth: 12
+                                boxWidth: 8,
+                                padding: 2
                             }
                         },
                         tooltip: {
                             callbacks: {
                                 label: function (context) {
-                                    return `${context.label}: ${context.raw}%`;
+                                    let label = context.label || '';
+                                    let value = context.raw || 0;
+                                    let total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    let percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${percentage}%`;
                                 }
                             }
                         }
