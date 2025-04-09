@@ -2,103 +2,101 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAXX TV - Welcome</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-   <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rounded Octagon Watch Card</title>
+    <style>
+        body {
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 340px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .rounded-octagon {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 25px;
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' > <path d='M30,3 Q33,0 37,0 H63 Q67,0 70,3 L97,30 Q100,33 100,37 V63 Q100,67 97,70 L70,97 Q67,100 63,100 H37 Q33,100 30,97 L3,70 Q0,67 0,63 V37 Q0,33 3,30 Z' fill='white' /> </svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' > <path d='M30,3 Q33,0 37,0 H63 Q67,0 70,3 L97,30 Q100,33 100,37 V63 Q100,67 97,70 L70,97 Q67,100 63,100 H37 Q33,100 30,97 L3,70 Q0,67 0,63 V37 Q0,33 3,30 Z' fill='white' /> </svg>");
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .rounded-octagon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .features {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .buy-btn {
+            background: #000;
+            color: #fff;
+            padding: 12px 26px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: #222;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <div id="nav">
-        <a href="#">
-            <img id="nav-logo" src="/Assests/photo_2025-02-14_15.14.43-removebg-preview.png" alt="logo">
-        </a>
-        <div id="hamburger" onclick="toggleMenu()">&#9776;</div>
-        <div id="close-btn" onclick="toggleMenu()">&times;</div>
-        <div class="bggg" id="menu">
-            <a id="homess" class="nav-item" href="#">
-                <h4>Home</h4>
-            </a>
-            <a href="pages/about/about.html" class="nav-item">
-                <h4>About Us</h4>
-            </a>
-            <a href="/pages/webfilms/index.html" class="nav-item">
-                <h4>Media Center</h4>
-            </a>
-            <a id="toggleButton" href="pages/events_blogs/events.html" class="nav-item">
-                <h4>Events & Blogs</h4>
-            </a>
-            <a href="reality_show.html" class="nav-item">
-                <h4>Contest</h4>
-            </a>
-            <a href="/pages/programs/index.html" class="nav-item">
-                <h4>Partner's Program</h4>
-            </a>
-            <a href="/pages/cast/index.html" class="nav-item">
-                <h4>Casting</h4>
-            </a>
-            <a href="/pages/contacts/index.html" class="nav-item">
-                <h4>Contact Us</h4>
-            </a>
+
+    <div class="card">
+        <div class="rounded-octagon">
+            <img src="https://i.imgur.com/B7ZJvpu.jpeg" alt="Anarc Watch">
         </div>
+        <div class="product-title">Anarc Smartwatch</div>
+        <div class="features">
+            1.85” AMOLED | Bluetooth Calling<br>
+            7-Day Battery | 100+ Sports Modes
+        </div>
+        <div class="price">₹3,499</div>
+        <a href="#" class="buy-btn">Buy Now</a>
     </div>
-
-    <!-- Main Content -->
-    <div id="main">
-        <section class="carousal">
-            <div id="carouselhome">
-                <div class="carousel">
-                    <div class="carousel-slides">
-                        <div class="carousel-slide">
-                            <div class="carousel-image">
-                                <img src="/Assests/web 1111.png" alt="">
-                                <div id="page">
-                                    <h1>Unlimited Movies, <br> SERIES, SHOWS <br> and MORE!</h1>
-                                    <h2>Starts free trials for 7 days.</h2>
-                                    <p>Stop Scrolling Start Watching.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-message" id="buttionss">
-                    <form id="phoneForm" class="footer-message">
-                        <input type="number" maxlength="10" id="phoneNumber" name="phoneNumber"
-                            placeholder="Enter your Number" required style="color: white;">
-                        <button type="submit" class="message-btn">
-                            <i class="fa fa-paper-plane"></i>
-                        </button>
-                        <div id="phoneFormStatus"
-                            style="display: none; margin-top: 5px; font-weight: bold; color: white;"></div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            const mainContent = document.getElementById('main');
-            const nav = document.getElementById('nav');
-            const hamburger = document.getElementById('hamburger');
-            const closeBtn = document.getElementById('close-btn');
-
-            if (menu.classList.contains('show')) {
-                menu.classList.remove('show');
-                closeBtn.classList.remove('show');
-                mainContent.style.pointerEvents = "auto";
-                nav.style.pointerEvents = "auto";
-            } else {
-                menu.classList.add('show');
-                closeBtn.classList.add('show');
-                mainContent.style.pointerEvents = "none";
-                nav.style.pointerEvents = "none";
-            }
-        }
-    </script>
 
 </body>
 
