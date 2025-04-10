@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,7 +49,7 @@
             <div class="card-container">
                 <!-- Event/BLOG Card 1 -->
                 <div class="event-card"
-                    onclick="openDetail('International Iconic Award', 'Imaxx tv | Awarded As Best Startup ‪@ImaxxTv‬ winner of 2023 best startup award.  ‪@ImaxxTv‬', 'https://www.youtube.com/embed/R7mifEjdvZM?si=yEbZ8a3rKg3_caG0')">
+                    onclick="openDetail('International Iconic Award', 'Imaxx tv | Awarded As Best Startup ‪@ImaxxTv‬ winner of 2023 best startup award.  ‪@ImaxxTv‬', 'https://www.youtube.com/embed/KQTKJykA_L4?si=4ks954fBUknGpCbG')">
                     <img src="/Assests/films/image copy 17.png" alt="Event 1" class="event-image">
                     <div class="card-info">
                         <div class="card-title">International Iconic Award</div>
@@ -76,7 +75,6 @@
     <div id="popup-modal" class="popup-modal">
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup()"></span>
-
             <h2 id="popup-title"></h2>
             <iframe width="100%" height="315" id="iframes" src="" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -84,7 +82,6 @@
             <!-- <img id="popup-image" src="" alt="Event Image" class="popup-image"> -->
             <p id="popup-description"></p>
             <button class="btn-watch" onclick="closePopup()">Back</button>
-
         </div>
     </div>
     <div id="mbcbtns">
@@ -120,6 +117,7 @@
             window.history.back();
         }
     </script>
+
     <script>
         function openDetail(title, description, url) {
             // Check if the URL is an external link

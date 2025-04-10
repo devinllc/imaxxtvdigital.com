@@ -1,103 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rounded Octagon Watch Card</title>
-    <style>
-        body {
-            background: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Meeting | Your Company</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --light: #f8fafc;
+      --dark: #1e293b;
+    }
 
-        .card {
-            background: #ffffff;
-            width: 340px;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+    }
 
-        .rounded-octagon {
-            width: 240px;
-            height: 240px;
-            margin: 0 auto 25px;
-            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' > <path d='M30,3 Q33,0 37,0 H63 Q67,0 70,3 L97,30 Q100,33 100,37 V63 Q100,67 97,70 L70,97 Q67,100 63,100 H37 Q33,100 30,97 L3,70 Q0,67 0,63 V37 Q0,33 3,30 Z' fill='white' /> </svg>");
-            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' > <path d='M30,3 Q33,0 37,0 H63 Q67,0 70,3 L97,30 Q100,33 100,37 V63 Q100,67 97,70 L70,97 Q67,100 63,100 H37 Q33,100 30,97 L3,70 Q0,67 0,63 V37 Q0,33 3,30 Z' fill='white' /> </svg>");
-            -webkit-mask-size: cover;
-            mask-size: cover;
-            overflow: hidden;
-            background: #000;
-        }
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
 
-        .rounded-octagon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
 
-        .product-title {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
 
-        .features {
-            font-size: 15px;
-            color: #555;
-            margin-bottom: 20px;
-        }
+    iframe {
+      width: 100%;
+      height: 650px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
 
-        .price {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #111;
-        }
+    .extras {
+      margin-top: 2rem;
+      text-align: center;
+    }
 
-        .buy-btn {
-            background: #000;
-            color: #fff;
-            padding: 12px 26px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
+    .extras a {
+      display: inline-block;
+      margin: 0.5rem;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
 
-        .buy-btn:hover {
-            background: #222;
-        }
-    </style>
+    .extras a:hover {
+      background-color: #1d4ed8;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+
+      iframe {
+        height: 750px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-    <div class="card">
-        <div class="rounded-octagon">
-            <img src="https://i.imgur.com/B7ZJvpu.jpeg" alt="Anarc Watch">
-        </div>
-        <div class="product-title">Anarc Smartwatch</div>
-        <div class="features">
-            1.85” AMOLED | Bluetooth Calling<br>
-            7-Day Battery | 100+ Sports Modes
-        </div>
-        <div class="price">₹3,499</div>
-        <a href="#" class="buy-btn">Buy Now</a>
+  <header>
+    <h2>Schedule a Meeting with Us</h2>
+    <p>Your time matters. Let's connect!</p>
+  </header>
+
+  <div class="container">
+    <h1>Pick a Slot Below</h1>
+
+    <!-- Google Calendar Appointment Booking Page -->
+    <iframe src="https://calendar.google.com/calendar/appointments/schedules/your-google-appointment-link"></iframe>
+
+    <div class="extras">
+      <!-- You can prefill the number/email if you want -->
+      <a href="https://wa.me/?text=Hey%20I%20just%20booked%20a%20meeting%20with%20you%21" target="_blank">
+        📲 Send WhatsApp Confirmation
+      </a>
+      <a href="mailto:your@email.com?subject=Meeting%20Booked&body=Hey%2C%20I%20have%20booked%20a%20meeting%20through%20your%20website.">
+        ✉️ Send Email Confirmation
+      </a>
     </div>
 
-</body>
+    <footer>
+      &copy; 2025 Your Company. All rights reserved.
+    </footer>
+  </div>
 
+</body>
 </html>

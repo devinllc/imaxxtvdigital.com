@@ -1194,16 +1194,16 @@ select:focus {
 
 
 .footer-left img {
-    width: 300px;
-    height: 300px;
-    margin-top: -80px;
+    width: 230px;
+    height: 150px;
+    margin-top: -30px;
     align-items: center;
 
 }
 
 .footer-left p {
     margin-left: -10px;
-    margin-top: -70px;
+    /* margin-top: -70px; */
 }
 
 .footer-right {
