@@ -1611,7 +1611,6 @@ select:focus {
     right: 20px;
     font-size: 2rem;
     opacity: 1;
-    z-index: 1000;
 }
 
 /* Responsive Design */
