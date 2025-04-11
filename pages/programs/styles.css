@@ -70,7 +70,7 @@ h3 {
 
 .scroll-images img {
     width: 15%;
-    height: 200px;
+    height: 210px;
     object-fit: cover;
     flex-shrink: 0;
     border-radius: 8px;
