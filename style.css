@@ -407,7 +407,7 @@ select:focus {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: -40px;
+        top: -10px;
     }
 }
 
@@ -2524,7 +2524,7 @@ select:focus {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: -50px;
+        top: -40px;
     }
 
     #imgss img {
